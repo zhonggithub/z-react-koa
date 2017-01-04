@@ -2,10 +2,10 @@
  * @Author: Zz 
  * @Date: 2017-01-02 16:22:01 
  * @Last Modified by: Zz
- * @Last Modified time: 2017-01-02 18:25:40
+ * @Last Modified time: 2017-01-04 20:47:11
  */
-import koa from 'koa';
-import kaoConvert from 'koa-convert';
+import Koa from 'koa';
+import koaConvert from 'koa-convert';
 import koaBunyanLogger from 'koa-bunyan-logger';
 import koaStaticCache from 'koa-static-cache';
 import cors from 'koa2-cors';
