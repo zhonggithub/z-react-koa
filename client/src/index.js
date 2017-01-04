@@ -11,7 +11,7 @@ import { Provider } from 'mobx-react';
 import { Router, Route, browserHistory, IndexRoute, IndexRedirect } from 'react-router';
 import { Login, PageLoginIndex } from './login';
 import { Layout, FUpload, FileUpload, BaiDuUeditor } from './components';
-import stores from './common';
+import stores from './stores';
 
 let mountNode = document.getElementById('appContent');
 
