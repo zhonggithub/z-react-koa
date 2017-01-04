@@ -45,3 +45,19 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+./client/node_modules
+.nyc_output
+.env
+npm-debug.log
+coverage/
+node_modules/
+public/node_modules/
+server/node_modules/
+server/dist/
+.remote-sync.json
+/doc/site/
+/client/dist/
+/client/public/
+.vscode/
+.idea/
+
