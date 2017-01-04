@@ -7,19 +7,6 @@
 */
 import crypto from 'crypto';
 
-const fetch = require('node-fetch');
-
-function mockOption(methodType, jsonBody) {
-  return {
-    method: methodType,
-    headers: {
-      // 'Accept': 'application/json',
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(jsonBody),
-  };
-}
-
 export default {
   verify(data, mandatory) {
     let msg = null;
@@ -53,41 +40,15 @@ export default {
     dec += decipher.final('utf8');
     return dec;
   },
-
-  generateOption(method, jsonBody) {
-    return mockOption(method, jsonBody);
-  },
-
-  fetchPost(url, jsonBody) {
-    return new Promise((resolve) => {
-      let status = 200;
-      fetch(url, mockOption('POST', jsonBody)).then((res) => {
-        status = res.status;
-        return res.json();
-      }).then((data) => {
-        resolve({ status, data });
-      });
-    });
-  },
-
+  
   packageRet200(ctx, retData, convertDataFunc) {
-    if (retData.code !== 0) {
-      ctx.status = retData.status;
-      ctx.body = convertDataFunc ? convertDataFunc(retData) : retData;
-    } else {
-      ctx.status = 200;
-      ctx.body = convertDataFunc ? convertDataFunc(retData) : retData;
-    }
+    ctx.status = 200;
+    ctx.body = convertDataFunc ? convertDataFunc(retData) : retData;
   },
 
   packageRet201(ctx, retData, convertDataFunc) {
-    if (retData.data.code !== 0) {
-      ctx.status = retData.status;
-      ctx.body = convertDataFunc ? convertDataFunc(retData.data) : retData.data;
-    } else {
-      ctx.status = 201;
-      ctx.body = convertDataFunc ? convertDataFunc(retData.data) : retData.data;
-    }
+    ctx.status = 201;
+    ctx.body = convertDataFunc ? convertDataFunc(retData.data) : retData.data;
   },
 
   returnPage(page, defaultPage) {

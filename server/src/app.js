@@ -1,17 +1,14 @@
-/**
-* @Author: Zz
-* @Date:   2016-09-27T20:03:49+08:00
-* @Email:  quitjie@gmail.com
-* @Last modified by:   Zz
-* @Last modified time: 2016-10-01T22:56:34+08:00
-*/
-import Koa from 'koa';
-import koaConvert from 'koa-convert';
-import session from 'koa-session';
+/*
+ * @Author: Zz 
+ * @Date: 2017-01-02 16:22:01 
+ * @Last Modified by: Zz
+ * @Last Modified time: 2017-01-02 18:25:40
+ */
+import koa from 'koa';
+import kaoConvert from 'koa-convert';
 import koaBunyanLogger from 'koa-bunyan-logger';
 import koaStaticCache from 'koa-static-cache';
-import cors from 'koa-cors';
-import invoke from 'uMicro-invoke';
+import cors from 'koa2-cors';
 import './env';
 import routes from './routes';
 
@@ -26,17 +23,14 @@ const handleError = async (ctx, next) => {
   }
 };
 
-app.use(cors());
-app.keys = ['hms-group-console_session'];
-app
-  .use(koaConvert(session(app)))
+app.use(cors())
   .use(koaConvert(koaStaticCache(`${__dirname}/public/`, {
-    prefix: '/group/public/',
+    prefix: process.env.APP_PREFIX,
     maxAge: 100000000000,
   })))
   .use(handleError)
   .use(koaConvert(koaBunyanLogger({
-    name: 'hms-group-console-web',
+    name: process.env.APP_NAME,
     level: (
       process.env.NODE_ENV === 'test'
         ? 'fatal'
@@ -44,7 +38,6 @@ app
     ),
   })))
   .use(koaConvert(koaBunyanLogger.requestIdContext()))
-  .use(invoke)
   .use(koaConvert(koaBunyanLogger.requestLogger()));
 
 app.proxy = true;
