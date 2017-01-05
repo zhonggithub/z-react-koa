@@ -76,7 +76,7 @@ export default class ZTable extends React.Component {
     if (!this.props.columns || this.props.disableColumnMenu) {
       return null;
     }
-    return <div className={ this.props.disableLeftTitle ? "hms-table-column-col-select-span" : "hms-table-column-col-select-span-1"}>
+    return <div className="hms-table-column-col-select-span-1">
             <Dropdown
               onVisibleChange={this.handleVisibleChange}
               visible={this.state.visible}
@@ -93,12 +93,14 @@ export default class ZTable extends React.Component {
   render() {
     return (
       <div>
-        <div style={{ paddingTop: '23px' }}>
+        <div style={{ paddingTop: this.props.disableLeftTitle && this.props.disableColumnMenu ? '0px' : '23px' }}>
           { this.renderItemCountTitle() }
           { this.renderDownMenu() }
-          <Table
-            { ...this.props }
-          />
+          <div style={{ marginTop: this.props.disableLeftTitle && !this.props.disableColumnMenu ? '18px' : '0px'}}>
+            <Table
+              { ...this.props }
+            />
+          </div>
         </div>
         <BackTop/>
       </div>
