@@ -15,7 +15,8 @@ import SearchInput from './SearchInput';
 import Statistics from './Statistics';
 import PictureShow from './PictureShow';
 import FUpload from './FUpload';
-import BaiDuUeditor from './BaiDuUeditor';
+//import BaiDuUeditor from './BaiDuUeditor';
+import ZTable from './Ztable';
 
 module.exports = {
     Layout,
@@ -35,5 +36,6 @@ module.exports = {
     Statistics,
     PictureShow,
     FUpload,
-    BaiDuUeditor,
+    //BaiDuUeditor,
+    ZTable,
 }
