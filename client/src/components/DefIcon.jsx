@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'antd';
 
-require('../style/iconfont1.css');
+require('../style/iconfont.css');
 
 export default class DefIcon extends React.Component {
     static PropTypes = {
