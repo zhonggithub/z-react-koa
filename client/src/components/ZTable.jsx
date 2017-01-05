@@ -67,7 +67,7 @@ export default class ZTable extends React.Component {
     }
     const pagination = this.props.pagination;
     const begin = (pagination.current - 1) * pagination.pageSize || 1;
-    const end = (pagination.current) * pagination.pageSize > pagination.total ? pagination.total : (pagination.current) * pagination.pageSize;
+    const end = (pagination.current) * pagination.pageSize > pagination.total ? pagination.total : (pagination.current) * pagination.pageSize || 10;
     const total = pagination.total;
     return <span>显示第 {begin} 至 {end} 项结果，共 {total} 项</span>
   }
