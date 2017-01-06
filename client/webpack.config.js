@@ -18,7 +18,15 @@ const entry = [
 const loaders = [
   { test: /\.jsx$/, loader: 'babel?cacheDirectory', include: `${__dirname}/src` },
   { test: /\.(less|css)$/, loader: 'style!css!less'},
-  { test: /\.js|jsx$/, exclude: /node_modules/, loaders: ['babel-loader']},
+  { test: /\.js|jsx$/, exclude: /node_modules/, loader: 'babel-loader', query: {
+    cacheDirectory: true,
+    plugins: [
+      //'transform-runtime',
+      //'add-module-exports',
+      'transform-decorators-legacy',
+    ],
+    presets: ['es2015', 'react', 'stage-1'],
+  }},
   { test: /\.json$/, loader: "json-loader"},
 ];
 
