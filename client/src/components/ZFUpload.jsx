@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon, Modal, } from 'antd';
 
-class ImgUpload extends React.Component {
+class ZImgUpload extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -98,4 +98,4 @@ class ImgUpload extends React.Component {
   }
 }
 
-module.exports = { ImgUpload, }
+module.exports = { ZImgUpload, }

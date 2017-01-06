@@ -9,12 +9,12 @@
 import React from 'react';
 import ReactHighcharts from 'react-highcharts';
 import {Icon, Select } from 'antd';
-import DefDatePicker from '../components/DefDatePicker';
+import ZDatePicker from './ZDatePicker';
 
 const Option = Select.Option;
 
-export default class Statistics extends React.Component {
-    static PropTypes = {
+export default class ZStatistics extends React.Component {
+    static propTypes = {
         config: React.PropTypes.object,
         title: React.PropTypes.string,
         onChange: React.PropTypes.func, //时间选择器回调函数,接受两个参数: dates, dateStrings
@@ -82,7 +82,7 @@ export default class Statistics extends React.Component {
               <span style={{fontSize: '16px', margin: '8px 0 -17px 10px'}}><Icon type="area-chart" style={{marginLeft: "10px", marginRight: '5px'}}/>{this.props.title}</span>
               <div className="hms-statistics-title-right">
                 { this.props.lineSelect === false ? null : this.renderSelect() }
-                { this.props.datePicker === false ? null :  <DefDatePicker onChange={this.props.onChange}/>}
+                { this.props.datePicker === false ? null : <ZDatePicker onChange={this.props.onChange}/>}
               </div>
             </div>
             <div className="hms-statistics-title-header"></div>

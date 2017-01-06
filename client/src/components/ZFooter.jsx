@@ -2,7 +2,7 @@ import React from 'react';
 
 //import 'antd/dist/antd.less';
 import './style.less';
-const Footer = React.createClass({
+const ZFooter = React.createClass({
   render(){
     return (
       <div id="footer" className="footer-wrap">
@@ -13,4 +13,4 @@ const Footer = React.createClass({
     );
   }
 });
-module.exports = Footer;
+module.exports = ZFooter;

@@ -8,21 +8,31 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import { Menu, Icon } from 'antd';
-import DefIcon from '../components/DefIcon';
+import ZIcon from './ZIcon';
 
 import './style.less';
 
 const SubMenu = Menu.SubMenu;
 
-export default class SideNavigation extends React.Component {
-    constructor(props) {
-      super(props);
-      this.state = {
-          collapse: false,
-      }
-    }
+export default class ZSideNavigation extends React.Component {
+  static propTypes = {
+    collapse: React.PropTypes.bool,
+    defaultSelectedKeys: React.PropTypes.array,
+    defaultOpenKeys: React.PropTypes.array,
+    selectedKeys: React.PropTypes.array,
+    onSelect: React.PropTypes.func,
+    onClick: React.PropTypes.func,
+    menus: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  }
 
-    handleClick = (e) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      collapse: false,
+    }
+  }
+
+  handleClick = (e) => {
     this.setState({
       current: e.key,
     });
@@ -45,9 +55,9 @@ export default class SideNavigation extends React.Component {
     }
 
     if(item.icon)
-      return ( <DefIcon icon={item.icon} size={this.props.collapse ? '24px' : '16px'}/> );
+      return ( <ZIcon icon={item.icon} size={this.props.collapse ? '24px' : '16px'}/> );
     else if(item.iconfont)
-      return ( <DefIcon iconfont={item.iconfont} size={this.props.collapse ? '24px' : '16px'} /> );
+      return ( <ZIcon iconfont={item.iconfont} size={this.props.collapse ? '24px' : '16px'} /> );
     else {
       return null;
     }

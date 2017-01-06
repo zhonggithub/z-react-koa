@@ -10,7 +10,7 @@ import { Input, Button } from 'antd';
 import classNames from 'classnames';
 const InputGroup = Input.Group;
 
-const SearchInput = React.createClass({
+const ZSearchInput = React.createClass({
   getInitialState() {
     return {
       value: '',
@@ -56,4 +56,4 @@ const SearchInput = React.createClass({
     );
   },
 });
-module.exports = SearchInput;
+module.exports = ZSearchInput;

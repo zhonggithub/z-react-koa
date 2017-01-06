@@ -9,10 +9,10 @@ import React from 'react';
 import { Icon, } from 'antd';
 import "./style.less";
 
-import Footer from './Footer';
-import Navigation from './Navigation';
+import ZFooter from './ZFooter';
+import ZNavigation from './ZNavigation';
 
-export default class Layout extends React.Component {
+export default class ZLayout extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,7 +22,7 @@ export default class Layout extends React.Component {
 
   onCollapseChange = () => {
     this.setState({
-        collapse: !this.state.collapse,
+      collapse: !this.state.collapse,
     });
   }
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.less';
 
-class PictureCard extends React.Component {
+class ZPictureCard extends React.Component {
     static propTypes = {
         src : React.PropTypes.string,
         title: React.PropTypes.string,
@@ -52,7 +52,7 @@ class PictureCard extends React.Component {
     }
 }
 
-class PictureCardGroup extends React.Component {
+class ZPictureCardGroup extends React.Component {
     static propTypes = {
         items: React.PropTypes.array, //pictureCard的参数数组。[{title:'', src:''}]
         onSelected: React.PropTypes.func, //选择了那张图片回调函数，参数：index，表示图片在PictureCardGroup的索引值，0起偏
@@ -122,6 +122,6 @@ class PictureCardGroup extends React.Component {
 }
 
 module.exports = {
-    PictureCard,
-    PictureCardGroup,
+  ZPictureCard,
+  ZPictureCardGroup,
 }

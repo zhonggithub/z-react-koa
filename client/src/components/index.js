@@ -1,41 +1,41 @@
-import Layout from './Layout';
-import Navigation from './Navigation';
-import SideNavigation from './SideNavigation';
-import Footer from './Footer';
-import Btn from './Btn';
-import ContentHeader from './ContentHeader';
-import DefIcon from './DefIcon';
-import DefBreadcrumb from './DefBreadcrumb';
-import DefDatePicker from './DefDatePicker';
-import DefDistrict from './DefDistrict';
-import DefNumberInput from './DefNumberInput';
-import DefOverview from './DefOverview';
-import FileUpload from './DefUpload';
-import SearchInput from './SearchInput';
-import Statistics from './Statistics';
-import PictureShow from './PictureShow';
-import FUpload from './FUpload';
+import ZLayout from './ZLayout';
+import ZNavigation from './ZNavigation';
+import ZSideNavigation from './ZSideNavigation';
+import ZFooter from './ZFooter';
+import ZBtn from './ZBtn';
+import ZContentHeader from './ZContentHeader';
+import ZIcon from './ZIcon';
+import ZBreadcrumb from './ZBreadcrumb';
+import ZDatePicker from './ZDatePicker';
+import ZDistrict from './ZDistrict';
+import ZNumberInput from './ZNumberInput';
+import ZOverview from './ZOverview';
+import ZFileUpload from './ZUpload';
+import ZSearchInput from './ZSearchInput';
+import ZStatistics from './ZStatistics';
+import ZPictureShow from './ZPictureShow';
+import ZFUpload from './ZFUpload';
 //import BaiDuUeditor from './BaiDuUeditor';
-import ZTable from './Ztable';
+import ZTable from './ZTable';
 
 module.exports = {
-    Layout,
-    Footer,
-    Navigation,
-    SideNavigation,
-    Btn,
-    ContentHeader,
-    DefIcon,
-    DefBreadcrumb,
-    DefDatePicker,
-    DefDistrict,
-    DefNumberInput,
-    DefOverview,
-    FileUpload,
-    SearchInput,
-    Statistics,
-    PictureShow,
-    FUpload,
+    ZLayout,
+    ZFooter,
+    ZNavigation,
+    ZSideNavigation,
+    ZBtn,
+    ZContentHeader,
+    ZIcon,
+    ZBreadcrumb,
+    ZDatePicker,
+    ZDistrict,
+    ZNumberInput,
+    ZOverview,
+    ZFileUpload,
+    ZSearchInput,
+    ZStatistics,
+    ZPictureShow,
+    ZFUpload,
     //BaiDuUeditor,
     ZTable,
 }

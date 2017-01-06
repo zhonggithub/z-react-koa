@@ -27,7 +27,7 @@ const g_key = [
   '/group/customermgr', //客户管理
 ]
 
-export default class Navigation extends React.Component {
+export default class ZNavigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {

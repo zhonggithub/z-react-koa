@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Input, Row, Col, message } from 'antd';
 
-class DefNumberInput extends React.Component{
+class ZNumberInput extends React.Component{
   constructor(props){
     super(props);
 
@@ -99,4 +99,4 @@ class DefNumberInput extends React.Component{
   }
 }
 
-module.exports = DefNumberInput;
+module.exports = ZNumberInput;

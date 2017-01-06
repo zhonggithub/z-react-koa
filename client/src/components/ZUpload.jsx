@@ -7,12 +7,12 @@
 */
 import React from 'react';
 import { Upload, Icon, message, Modal, Button, Tabs, Spin, } from 'antd';
-import DefIcon from './DefIcon';
+import ZIcon from './ZIcon';
 
 const Dragger = Upload.Dragger;
 const TabPane = Tabs.TabPane;
 
-class DefUpload extends React.Component {
+class ZUpload extends React.Component {
   static propTypes = {
     action: React.PropTypes.string,
     onChange: React.PropTypes.func, //图片上传回调函数，参数：fileList
@@ -293,7 +293,7 @@ class DefUpload extends React.Component {
           <TabPane tab={<span><Icon type="upload" />上传</span>} key="1" >
             { this.renderDragger() }
           </TabPane>
-          {/* <TabPane tab={<span><DefIcon iconfont="&#xe632;" />历史上传</span>} key="2">
+          {/* <TabPane tab={<span><ZIcon iconfont="&#xe632;" />历史上传</span>} key="2">
             Tab 2
           </TabPane>
           <TabPane tab={<span><Icon type="cloud-download-o" />远程图片</span>} key="3">
@@ -325,7 +325,7 @@ class DefUpload extends React.Component {
   }
 }
 
-const DefPictureAppear = React.createClass({
+const ZPictureAppear = React.createClass({
   propTypes: {
     width: React.PropTypes.string,
     height: React.PropTypes.string,
@@ -388,4 +388,4 @@ const DefPictureAppear = React.createClass({
   },
 });
 
-module.exports = { DefUpload, DefPictureAppear } ;
+module.exports = { ZUpload, ZPictureAppear } ;

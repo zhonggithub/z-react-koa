@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, Menu, Checkbox, Dropdown, BackTop, Button, Icon, } from 'antd';
-import SearchInput from './SearchInput';
+import ZSearchInput from './ZSearchInput';
 
 import '../style/style.less';
 

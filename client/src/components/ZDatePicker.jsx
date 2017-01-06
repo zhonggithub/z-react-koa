@@ -11,7 +11,7 @@ import moment from 'moment';
 
 const RangePicker = DatePicker.RangePicker;
 
-export default class DefDatePicker extends React.Component {
+export default class ZDefDatePicker extends React.Component {
   static propTypes = {
     onChange: React.PropTypes.func, //接受两个参数: dates, dateStrings
     showTime: React.PropTypes.object,

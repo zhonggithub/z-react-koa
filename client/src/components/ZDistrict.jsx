@@ -4,8 +4,8 @@ import { administrativeDistrict } from '../common';
 
 const Option = Select.Option;
 
-export default class DefDistrict extends React.Component {
-  static PropTypes = {
+export default class ZDefDistrict extends React.Component {
+  static propTypes = {
     onChange: React.PropTypes.func,
     level: React.PropTypes.number,
     address: React.PropTypes.shape({

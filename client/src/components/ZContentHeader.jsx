@@ -2,7 +2,7 @@ import React from 'react';
 import { Breadcrumb, Icon } from 'antd';
 require('../style/iconfont.css');
 
-export default class ContentHeader extends React.Component {
+export default class ZContentHeader extends React.Component {
   static propTypes = {
     content : React.PropTypes.oneOfType([
       React.PropTypes.string,
