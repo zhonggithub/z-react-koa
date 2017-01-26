@@ -1,4 +1,4 @@
-import request from './request';
+import  { request } from '../common';
 
 class AppStore {
   get token() {
