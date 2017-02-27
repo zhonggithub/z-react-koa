@@ -81,7 +81,7 @@ export default class ZTable extends React.Component {
       return null;
     }
     return <div className="hms-table-column-col-select-span-1">
-            { this.props.disableSearchInput ? null : <SearchInput placeholder={ this.props.searchInputPlaceholder ||''}
+            { this.props.disableSearchInput ? null : <ZSearchInput placeholder={ this.props.searchInputPlaceholder ||''}
               onSearch={this.props.onSearch} style={{ width: 200, marginTop: this.props.disableColumnMenu ? '0px' : '-4px' }}
             />}
             { this.props.disableColumnMenu ? null: <Dropdown
