@@ -49,7 +49,7 @@ export default class ZLayout extends React.Component {
         </aside>
         <div className="ant-layout-main">
           <div className="hms-layout-nav-header">
-            <Navigation />
+            <ZNavigation />
           </div>
           {this.props.children.props.children}
         </div>

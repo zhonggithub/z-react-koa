@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import { Router, Route, browserHistory, IndexRoute, IndexRedirect } from 'react-router';
 import { Login, PageLoginIndex } from './login';
-import { Layout, FUpload, FileUpload, BaiDuUeditor } from './components';
+import { ZLayout } from './components';
 import stores from './stores';
 
 let mountNode = document.getElementById('appContent');
@@ -21,14 +21,12 @@ function auth(nextState, replace) {
   }
 }
 
-ReactDOM.render(<BaiDuUeditor />, mountNode);
-
 // ReactDOM.render((
 //   <Provider {...stores}>
 //     <Router history={ browserHistory }>
 //       <Route path="/" >
 //         <IndexRedirect to="/group" />
-//         <Route path="group" onEnter={ auth } component={ Layout }>
+//         <Route path="group" onEnter={ auth } component={ ZLayout }>
 //           {/* <IndexRedirect to="/group/dockingplatform/overview/datacount" /> */}
 //           <IndexRedirect to="/group/dockingplatform/weixin/interface" />
 //           <Route path="dockingplatform" component={ DockingPlatformSideNav }>
