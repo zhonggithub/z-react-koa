@@ -14,13 +14,6 @@ const webpackConfig = require('./webpack.config');
 const bodyParser = require('body-parser');
 
 const app = express();
-app.set('trust proxy', 1) // trust first proxy
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  cookie: { secure: true }
-}));
 
 const compiler = webpack(webpackConfig);
 app.use(bodyParser.json());
