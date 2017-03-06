@@ -11,18 +11,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const fs = require('fs');
 const webpackConfig = require('./webpack.config');
-const upload = require('jquery-file-upload-middleware');
-var qr = require('qr-image')
-const moment = require('moment');
-const nodeExcel = require('excel-export');
-var session = require('express-session')
-//const swig  = require('swig');
-const React = require('react');
-const Router = require('react-router');
-//const routes = require('./src/routes');
 const bodyParser = require('body-parser');
-import fetch from 'node-fetch';
-import { config } from './src/common';
 
 const app = express();
 app.set('trust proxy', 1) // trust first proxy
