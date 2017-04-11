@@ -41,7 +41,7 @@ class Login extends React.Component {
         .then(rst => {
           appStore.token = rst.data.token;
           appStore.payload = rst.data.user;
-          // location.href = '/zplatorm/sidenav/accountservice/account';
+          location.href = '/bubblegum';
         }).catch(err => {
           this.setState({
             error: err.message,
