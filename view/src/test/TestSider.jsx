@@ -2,16 +2,10 @@
  * @Author: Zz
  * @Date: 2017-02-28 10:34:19
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-11 23:36:40
+ * @Last Modified time: 2017-04-12 00:02:29
  */
 import React from 'react';
-// import { ZSideNavigation, ZIcon } from '../components';
-
-import cp from '../components';
-console.log(cp);
-import ZSideNavigation from '../components/ZSideNavigation';
-import ZIcon from '../components/ZIcon';
-console.log(ZSideNavigation, ZIcon);
+import { ZSideNavigation, ZIcon } from '../components';
 
 const g_prefix = '/zplatorm/sidenav/';
 const g_defIconLargenSize = '24px';

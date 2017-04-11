@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-04-11 20:38:24
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-11 23:45:00
+ * @Last Modified time: 2017-04-12 00:01:38
  */
 import React from 'react';
 import { Route } from 'react-router-dom';
@@ -29,15 +29,17 @@ export default class ZApp extends React.Component {
     });
   }
 
+  renderSideImp(component) {
+    return React.cloneElement(component, {collapse: true});
+  }
+
   renderSideNav = () => {
     return this.props.routes.map((route, index) => (
           <Route
             key={index}
             path={route.path}
             exact={route.exact}
-            component={route.sidebar}
-            // component={ !this.state.collapse ? route.sidebar : React.cloneElement(route.sidebar, {collapse: true})
-            //}
+            component={ !this.state.collapse ? route.sidebar : this.renderSideImp.bind(this, route.sidebar())}
           />
         ));
   }
