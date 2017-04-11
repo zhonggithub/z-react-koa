@@ -5,10 +5,9 @@
 * @Last modified by:   Zz
 * @Last modified time: 2016-10-08T23:33:17+08:00
 */
-
 import React from 'react';
 import { Breadcrumb, Icon } from 'antd';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import './style.less';
 import '../style/iconfont.css';

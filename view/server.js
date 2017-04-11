@@ -26,6 +26,36 @@ app.use(webpackDevMiddleware(compiler, {
 }));
 app.use(require('webpack-hot-middleware')(compiler));
 
+function resFun(res, data, status = 200) {
+  res.writeHead(status, {
+    'Content-Type': 'application/json'
+  });
+  res.write(JSON.stringify(data));
+  res.end();
+}
+
+app.post('/group/api/login', (req, res, next) => {
+  const data = {
+    code: 0,
+    message: 'success',
+    data: {
+      token: 'token',
+      user: {
+        account: 'zz0',
+        password: '',
+        name: 'zz0',
+        roles: [],
+        lastLoginTime: 1473386516,
+        id: '57de55213e442a17287ecd67',
+        createAt: 1473326516,
+        updateAt: 1473326516,
+        tid: '12564'
+      }
+    },
+   };
+   resFun(res, data);
+});
+
 app.use('*', (req, res, next) => {
   compiler.outputFileSystem.readFile(`${compiler.outputPath}index.html`,
   (err, rst) => {

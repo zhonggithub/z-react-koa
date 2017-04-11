@@ -1,3 +1,9 @@
+/*
+ * @Author: Zz
+ * @Date: 2017-04-10 21:16:56
+ * @Last Modified by:   Zz
+ * @Last Modified time: 2017-04-10 21:16:56
+ */
 import React from 'react';
 import { Select } from 'antd';
 import { administrativeDistrict } from '../common';

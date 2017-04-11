@@ -1,3 +1,9 @@
+/*
+ * @Author: Zz
+ * @Date: 2017-04-10 21:17:04
+ * @Last Modified by:   Zz
+ * @Last Modified time: 2017-04-10 21:17:04
+ */
 import React from 'react';
 import { Icon, Modal, } from 'antd';
 

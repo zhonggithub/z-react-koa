@@ -6,7 +6,7 @@
 * @Last modified time: 2016-10-09T23:26:08+08:00
 */
 import React from 'react';
-import { Link, browserHistory } from 'react-router';
+import { Link, history } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
 import ZIcon from './ZIcon';
 
@@ -36,7 +36,7 @@ export default class ZSideNavigation extends React.Component {
     this.setState({
       current: e.key,
     });
-    browserHistory.replace(e.key);
+    history.replace(e.key);
   }
 
   rendIcon(item) {

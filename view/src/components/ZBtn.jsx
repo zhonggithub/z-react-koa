@@ -5,7 +5,7 @@
 * @Last modified by:   Zz
 * @Last modified time: 2016-10-09T23:15:33+08:00
 */
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { Button, Icon, Menu, Dropdown, Modal, message, InputNumber, } from 'antd';
 import querystring from 'querystring';

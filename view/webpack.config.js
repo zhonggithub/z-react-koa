@@ -6,7 +6,7 @@
 * @Last modified time: 2016-09-11T22:46:25+08:00
 */
 const webpack = require('webpack');
-const publicPath = '/group/public';
+const publicPath = '/zp/public';
 const hotMiddlewareScript = 'webpack-hot-middleware/client?reload=true';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -16,8 +16,8 @@ const entry = [
 ];
 
 const loaders = [
-  { test: /\.jsx$/, loader: 'babel?cacheDirectory', include: `${__dirname}/src` },
-  { test: /\.(less|css)$/, loader: 'style!css!less'},
+  { test: /\.jsx$/, loader: 'babel-loader?cacheDirectory', include: `${__dirname}/src` },
+  { test: /\.(less|css)$/, loader: 'style-loader!css-loader!less-loader'},
   { test: /\.js|jsx$/, exclude: /node_modules/, loader: 'babel-loader', query: {
     cacheDirectory: true,
     plugins: [
@@ -25,23 +25,30 @@ const loaders = [
       //'add-module-exports',
       'transform-decorators-legacy',
     ],
-    presets: ['es2015', 'react', 'stage-1'],
+    presets: ['es2015', 'react', 'stage-0'],
   }},
   { test: /\.json$/, loader: "json-loader"},
 ];
 
 const plugins = [
-  new HtmlWebpackPlugin( { template: 'src/index.html' } )
+  new HtmlWebpackPlugin( { template: 'src/index.html' } ),
+  new webpack.optimize.OccurrenceOrderPlugin(),
+  new webpack.LoaderOptionsPlugin({
+    options: {
+      babel: {
+        "plugins": [["antd"]]
+      },
+    }
+  }),
 ];
 if (process.env.NODE_ENV === 'development') {
   entry.unshift(hotMiddlewareScript);
-  plugins.push(new webpack.optimize.OccurenceOrderPlugin());
+  
   plugins.push(new webpack.HotModuleReplacementPlugin());
-  plugins.push(new webpack.NoErrorsPlugin());
+  plugins.push(new webpack.NoEmitOnErrorsPlugin());
   loaders.push({ test: /\.(png|jpg|gif|jpe?g)$/, loader: 'file-loader'});
   loaders.push({ test: /\.(eot|woff|woff2|svg|ttf)([\?]?.*)$/, loader: "file-loader" });
 } else if(process.env.NODE_ENV === 'production') {
-  plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
   plugins.push(new webpack.DefinePlugin({
     'process.env':{
       'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
@@ -62,7 +69,7 @@ if (process.env.NODE_ENV === 'development') {
 module.exports = {
     entry,
     resolve : {
-        extensions:["", ".js", ".jsx", ".less", ".json", ".css"],
+        extensions:[".js", ".jsx", ".less", ".json", ".css"],
         alias: {
           //components: `${__dirname}/src/components`,
           //stores: `${__dirname}/src/stores`,
@@ -86,9 +93,7 @@ module.exports = {
       //'react-dom': 'ReactDOM',
       //'react-router': 'ReactRouter',
     },
-    babel: {
-      "plugins": [["antd"]]
-    },
+    
     plugins,
     node: {
         console: true,

@@ -1,7 +1,7 @@
-import Login from './Login';
+import PageLogin from './PageLogin';
 import PageLoginIndex from './PageLoginIndex';
 
 module.exports = {
-  Login,
+  PageLogin,
   PageLoginIndex,
 }

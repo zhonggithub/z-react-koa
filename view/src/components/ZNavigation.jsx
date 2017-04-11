@@ -5,10 +5,10 @@
 * @Last modified by:   Zz
 * @Last modified time: 2016-10-08T23:14:24+08:00
 */
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import React from 'react';
 import { Menu, Icon, Dropdown, Badge, Popover, Row, Button, Modal, notification, } from 'antd';
-import { appStore, orderStore, } from '../common';
+import { appStore, orderStore, } from '../stores';
 
 import './style.less';
 
@@ -21,10 +21,10 @@ const SubMenu = Menu.SubMenu;
 const array = ["平台对接", "集团管理", "营销推广", "客户管理"];
 
 const g_key = [
-  '/group/dockingplatform', //平台对接
-  '/group/groupmgr', // 集团管理
-  '/group/marketingpromotion', //营销推广
-  '/group/customermgr', //客户管理
+  '/bubblegum', //平台对接
+  '/', // 集团管理
+  '/shoelaces', //营销推广
+  // '/bubblegum', //客户管理
 ]
 
 export default class ZNavigation extends React.Component {
@@ -176,11 +176,12 @@ export default class ZNavigation extends React.Component {
   }
 
   render() {
-    const roles = appStore.payload.r;
+    const roles = appStore.payload.name;
     const role = roles && roles.length > 0 ? roles[0] : '';
     const roleStr = role ? ` | ${role}` : ''
-    const loginToolTitle = `${appStore.payload.u}${roleStr}`;
+    const loginToolTitle = `${appStore.payload.name}`;
     return (
+      
       <div className="hms-layout-top">
         <div className="login-tool" >
           <Menu mode="horizontal"
@@ -232,11 +233,9 @@ export default class ZNavigation extends React.Component {
           <Menu.Item key={g_key[2]} className="ant-layout-menu-item">
             营销推广
           </Menu.Item>
-          <Menu.Item key={g_key[3]} className="ant-layout-menu-item">
-            客户管理
-          </Menu.Item>
         </Menu>
       </div>
+      
       );
     }
 }

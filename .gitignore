@@ -56,8 +56,8 @@ server/node_modules/
 server/dist/
 .remote-sync.json
 /doc/site/
-/client/dist/
-/client/public/
+/view/dist/
+/server/public/
 .vscode/
 .idea/
 

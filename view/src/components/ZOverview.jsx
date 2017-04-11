@@ -6,7 +6,7 @@
 * @Last modified time: 2016-10-07T23:22:23+08:00
 */
 import React from 'react';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Card, Col, Row, Icon } from 'antd';
 
 export default class ZOverview extends React.Component {
