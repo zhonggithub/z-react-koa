@@ -6,9 +6,9 @@
 * @Last modified time: 2016-10-08T23:14:24+08:00
 */
 import { Link } from 'react-router-dom';
+import { inject, observer } from 'mobx-react';
 import React from 'react';
 import { Menu, Icon, Dropdown, Badge, Popover, Row, Button, Modal, notification, } from 'antd';
-import { appStore, orderStore, } from '../stores';
 
 import './style.less';
 
@@ -26,7 +26,7 @@ const g_key = [
   '/shoelaces', //营销推广
   // '/bubblegum', //客户管理
 ]
-
+@inject("stores") @observer
 export default class ZNavigation extends React.Component {
   constructor(props) {
     super(props);
@@ -74,44 +74,6 @@ export default class ZNavigation extends React.Component {
   }
 
   componentDidMount() {
-    if(!appStore.payload.t) {
-      return;
-    }
-
-    const _this = this;
-    orderStore.notificationList({
-      status: 0,
-      page: 1,
-      pageSize: 10,
-    }).then(resData => {
-      _this.setState({
-        orders: resData.data.items,
-        orderTotal: resData.data.total,
-      });
-      //_this.openNotification();
-    }).catch(err => {
-      _this.setState({
-        error: err.message,
-      });
-    });
-    setInterval(() => {
-      orderStore.notificationList({
-        status: 0,
-        page: 1,
-        pageSize: 10,
-      }).then(resData => {
-        _this.setState({
-          orders: resData.data.items,
-          orderTotal: resData.data.total,
-        });
-        // if(this.state.isNotification)
-        //   _this.openNotification();
-      }).catch(err => {
-        _this.setState({
-          error: err.message,
-        });
-      });
-    }, 5000);
   }
 
   handleClick = (e) => {
@@ -163,17 +125,17 @@ export default class ZNavigation extends React.Component {
       title: '是否退出?',
       //content: 'some descriptions',
       onOk() {
-        appStore.logout();
+        this.props.stores.appStore.logout();
       },
       onCancel() {},
     });
   }
 
   render() {
-    const roles = appStore.payload.name;
+    const roles = this.props.stores.appStore.payload.name;
     const role = roles && roles.length > 0 ? roles[0] : '';
     const roleStr = role ? ` | ${role}` : ''
-    const loginToolTitle = `${appStore.payload.name}`;
+    const loginToolTitle = `${this.props.stores.appStore.payload.name}`;
     return (
       
       <div className="hms-layout-top">
