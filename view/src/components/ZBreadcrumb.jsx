@@ -8,11 +8,20 @@
 import React from 'react';
 import { Breadcrumb, Icon } from 'antd';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import ZIcon from './ZIcon';
 import './style.less';
 
-export default class ZDefBreadcrumb extends React.Component {
+export default class ZBreadcrumb extends React.Component {
   static propTypes = {
-    items : React.PropTypes.array.isRequired,
+    items : PropTypes.arrayOf(PropTypes.shape({
+      content: PropTypes.string,
+      to: PropTypes.string,
+      icon: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element
+      ]),
+    })),
   }
 
   constructor(props){
@@ -20,17 +29,15 @@ export default class ZDefBreadcrumb extends React.Component {
   }
 
   renderIcon(item){
-    if(item.icon){
-      if(item.customize)
-        return <i className="iconfont" style={{marginLeft: '10px', marginRight: '5px'}}>{item.icon}</i>
-      return <Icon type={item.icon} style={{marginRight: '5px'}}/>
+    if (!item.icon) {
+      return null;
     }
-    return null;
+    return typeof item.icon === 'string' ? <ZIcon icon={item.icon} style={{marginRight: '5px'}}/> : item.icon;
   }
 
   renderLink(item){
-    if(item.to || item.href){
-      return <Link to={item.to || item.href}>
+    if(item.to){
+      return <Link to={item.to}>
         {this.renderIcon(item)}
         {item.content}
       </Link>

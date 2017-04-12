@@ -10,8 +10,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
 import { BrowserRouter, Route, Redirect, Switch, } from 'react-router-dom';
 import { PageLogin, PageLoginIndex } from './login';
-import { ZLayout, ZNavigation, ZApp } from './components';
-import { TestSider, TestSider1 } from './test'
+import { ZLayout, ZNavigation, ZApp, ZBreadcrumb } from './components';
+import { TestSider, TestSider1, TestList, } from './test'
 import stores from './stores';
 import 'antd/dist/antd.less';
 import './style/iconfont.css';
@@ -40,7 +40,7 @@ const routes = [
   },
   { path: '/bubblegum',
     sidebar: () => <TestSider1/>,
-    main: () => <h2>Bubblegum</h2>
+    main: () => <TestList/>
   },
   { path: '/shoelaces',
     sidebar: () => <div>Shoelaces</div>,
@@ -48,7 +48,19 @@ const routes = [
   }
 ];
 
-// ReactDOM.render(<ZApp routes={routes}/>, mountNode);
+
+const items = [
+      {
+        content: '主页',
+        to: '/group/dockingplatform',
+        icon: 'home',
+      },{
+        content: '账号服务',
+        to: '/group/dockingplatform/crs',
+      },{
+        content: '用户列表',
+      }
+    ];
 
 ReactDOM.render((
   <Provider stores={stores}>
