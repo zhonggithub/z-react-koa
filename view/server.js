@@ -56,6 +56,16 @@ app.post('/group/api/login', (req, res, next) => {
    resFun(res, data);
 });
 
+app.post('/group/api/logout', (req, res, next) => {
+  const data = {
+    code: 0,
+    message: 'success',
+    data: {
+    },
+   };
+   resFun(res, data);
+});
+
 app.use('*', (req, res, next) => {
   compiler.outputFileSystem.readFile(`${compiler.outputPath}index.html`,
   (err, rst) => {

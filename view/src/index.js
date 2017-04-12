@@ -22,7 +22,7 @@ function auth(nextState, replace) {
 }
 
 const routes = [
-  { path: '/',
+  { path: '/index',
     exact: true,
     sidebar: () => <TestSider/>,
     main: () => { return (<div>
@@ -47,8 +47,6 @@ const routes = [
   }
 ];
 
-// ReactDOM.render((<Provider stores={stores}><PageLogin/></Provider>), mountNode);
-
 // ReactDOM.render(<ZApp routes={routes}/>, mountNode);
 
 ReactDOM.render((
@@ -59,7 +57,6 @@ ReactDOM.render((
           return auth() ? <ZApp routes={routes}/> : <PageLogin/>
         }}>
         </Route>
-        <Route path="/login" component={ PageLogin } /> 
      </div>
     </BrowserRouter>
   </Provider>

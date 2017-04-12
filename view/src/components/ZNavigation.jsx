@@ -22,7 +22,7 @@ const array = ["平台对接", "集团管理", "营销推广", "客户管理"];
 
 const g_key = [
   '/bubblegum', //平台对接
-  '/', // 集团管理
+  '/index', // 集团管理
   '/shoelaces', //营销推广
   // '/bubblegum', //客户管理
 ]
@@ -163,13 +163,7 @@ export default class ZNavigation extends React.Component {
       title: '是否退出?',
       //content: 'some descriptions',
       onOk() {
-        appStore.logout()
-          .then(resData => {
-            appStore.token = null;//resData.token;
-            location.href = '/group/login';
-          }).catch(err => {
-            _this.setState({message: err.message});
-          });
+        appStore.logout();
       },
       onCancel() {},
     });

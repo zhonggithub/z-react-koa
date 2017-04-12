@@ -36,18 +36,7 @@ class Login extends React.Component {
         return;
       }
       const appStore = this.props.stores.appStore;
-      appStore
-        .login(values)
-        .then(rst => {
-          appStore.token = rst.data.token;
-          appStore.payload = rst.data.user;
-          location.href = '/bubblegum';
-        }).catch(err => {
-          this.setState({
-            error: err.message,
-          });
-          message.error(err.message);
-        });
+      appStore.login(values);
    });
   }
   handleTabChange = (key) => {
@@ -63,7 +52,7 @@ class Login extends React.Component {
        <div style={{"display": "flex", "justifyContent": "center"}}>
          <div className="ant-layout-login">
           <Tabs type="card" onChange={this.handleTabChange}>
-            <TabPane tab="普通登入" key="1">
+            <TabPane tab="账号登入" key="1">
               <Form layout="horizontal">
                 <FormItem>
                   {

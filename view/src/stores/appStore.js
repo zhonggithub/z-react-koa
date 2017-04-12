@@ -1,7 +1,15 @@
-import  { request } from '../common';
+/*
+ * @Author: Zz
+ * @Date: 2017-04-12 20:55:50
+ * @Last Modified by: Zz
+ * @Last Modified time: 2017-04-12 21:56:48
+ */
+import { observable, computed } from 'mobx';
+import { message } from 'antd';
+import { request, functionPool, config } from '../common';
 
 class AppStore {
-  get token() {
+  @computed get token() {
     return sessionStorage.getItem('jwt:token');
   }
 
@@ -9,7 +17,7 @@ class AppStore {
     sessionStorage.setItem('jwt:token', val);
   }
 
-  get payload() {
+  @computed get payload() {
     return JSON.parse(sessionStorage.getItem('jwt:payload'));
   }
 
@@ -17,42 +25,31 @@ class AppStore {
     sessionStorage.setItem('jwt:payload', JSON.stringify(val));
   }
 
-  get isLogin() {
-    if(this.token === 'undefined')
+  @computed get isLogin() {
+    if(this.token === 'undefined' || this.token === 'null')
       return false;
     return !!this.token;
   }
 
   login(params) {
-    return request('/group/api/login', params).then(res => {
-      if (res.status !== 200) {
-        return res.json().then(rst => {
-          throw new Error(`[${rst.code}] ${rst.message}`);
-        });
-      }
-      return res.json();
-    });
-  }
-
-  groupLogin(params) {
-    return request('/group/api/login/group', params).then(res => {
-      if (res.status !== 200) {
-        return res.json().then(rst => {
-          throw new Error(`[${rst.code}] ${rst.message}`);
-        });
-      }
-      return res.json();
+    const url = `${config.apiPrefix}/login`;
+    request(url, params).then(functionPool.package200).then(ret =>{
+      this.payload = ret.data.user;
+      this.token = ret.data.token;
+      location.href = '/index';
+    }).catch(err => {
+      message.error(`登入失败! ${err}`);
     });
   }
 
   logout() {
-    return request('/group/api/logout', {}).then(res => {
-      if (res.status !== 200) {
-        return res.json().then(rst => {
-          throw new Error(`[${rst.code}] ${rst.message}`);
-        });
-      }
-      return res.json();
+    const url = `${config.apiPrefix}/logout`;
+    return request(url, {}).then(functionPool.package200).then(ret => {
+      // this.payload = null;
+      this.token = null;
+      location.href = '/';
+    }).catch(err => {
+      message.error(`登出失败! ${err}`);
     });
   }
 }
