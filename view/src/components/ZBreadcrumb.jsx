@@ -8,9 +8,7 @@
 import React from 'react';
 import { Breadcrumb, Icon } from 'antd';
 import { Link } from 'react-router-dom';
-
 import './style.less';
-import '../style/iconfont.css';
 
 export default class ZDefBreadcrumb extends React.Component {
   static propTypes = {

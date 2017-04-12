@@ -14,6 +14,7 @@ import { ZLayout, ZNavigation, ZApp } from './components';
 import { TestSider, TestSider1 } from './test'
 import stores from './stores';
 import 'antd/dist/antd.less';
+import './style/iconfont.css';
 
 let mountNode = document.getElementById('appContent');
 
