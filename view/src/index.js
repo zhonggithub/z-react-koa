@@ -11,7 +11,7 @@ import { Provider } from 'mobx-react';
 import { BrowserRouter, Route, Redirect, Switch, } from 'react-router-dom';
 import { PageLogin, PageLoginIndex } from './login';
 import { ZLayout, ZNavigation, ZApp } from './components';
-import { TestSider } from './test'
+import { TestSider, TestSider1 } from './test'
 import stores from './stores';
 import 'antd/dist/antd.less';
 
@@ -38,7 +38,7 @@ const routes = [
       </div>)}
   },
   { path: '/bubblegum',
-    sidebar: () => <TestSider/>,
+    sidebar: () => <TestSider1/>,
     main: () => <h2>Bubblegum</h2>
   },
   { path: '/shoelaces',
