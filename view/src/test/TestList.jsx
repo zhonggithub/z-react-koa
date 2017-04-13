@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-02-28 10:54:03
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-13 00:07:50
+ * @Last Modified time: 2017-04-13 09:10:25
  */
 import React from 'react';
 import moment from 'moment';
@@ -76,7 +76,7 @@ export default class PageAccountList extends React.Component {
     };
   }
   componentDidMount() {
-    this.state.accountStore.list();
+    // this.state.accountStore.list();
   }
 
   onSearch = (value) => {
