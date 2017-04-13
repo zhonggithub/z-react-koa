@@ -1,25 +1,27 @@
 /*
  * @Author: Zz
  * @Date: 2017-04-10 21:16:40
- * @Last Modified by:   Zz
- * @Last Modified time: 2017-04-10 21:16:40
+ * @Last Modified by: Zz
+ * @Last Modified time: 2017-04-13 22:01:31
  */
 import React from 'react';
 import { Breadcrumb, Icon } from 'antd';
-require('../style/iconfont.css');
+import PropTypes from 'prop-types';
+import { computed } from 'mobx';
+import ZIcon from './ZIcon';
 
 export default class ZContentHeader extends React.Component {
   static propTypes = {
-    content : React.PropTypes.oneOfType([
-      React.PropTypes.string,
-      React.PropTypes.element,
+    content : PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.element,
     ]),
-    color: React.PropTypes.string,
-    icon: React.PropTypes.string,
-    iconfont: React.PropTypes.string,
-    customize: React.PropTypes.bool,
-    type: React.PropTypes.string,
-    fontSize: React.PropTypes.string,
+    color: PropTypes.string,
+    icon: PropTypes.string,
+    iconfont: PropTypes.string,
+    customize: PropTypes.bool,
+    type: PropTypes.string,
+    fontSize: PropTypes.string,
   }
 
   constructor(props){
@@ -27,9 +29,9 @@ export default class ZContentHeader extends React.Component {
   }
 
   renderTitle() {
-    if(this.props.customize){
+    if (this.props.customize){
       return <i className="iconfont" style={{marginRight: '10px'}}>{this.props.icon}</i>
-    }else if(this.props.iconfont){
+    } else if (this.props.iconfont) {
       return <i className="iconfont" style={{marginRight: '10px'}}>{this.props.iconfont}</i>
     }
     return (
@@ -38,7 +40,7 @@ export default class ZContentHeader extends React.Component {
   }
 
   render(){
-    let style={ fontSize: this.props.fontSize || "16px" };
+    let style = { fontSize: this.props.fontSize || "16px" };
     if(this.props.color)
       style.color = this.props.color;
     else if(this.props.type && this.props.type === 'edit')

@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-04-10 21:17:12
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-13 21:41:32
+ * @Last Modified time: 2017-04-13 22:03:06
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -20,11 +20,12 @@ export default class ZIcon extends React.Component {
   }
 
   @computed get style() {
-    const tmpStyle = this.props.className || {};
+    const tmpClassName = this.props.className || {};
+    const tmpStyle = this.props.style || {};
     if (this.props.icon) {
-      return Object.assign({ fontSize: `${this.props.size || 16}px` }, tmpStyle);
+      return Object.assign({ fontSize: `${this.props.size || 16}px` }, tmpStyle, tmpClassName);
     }
-    return Object.assign({ fontSize: `${this.props.size || 16}px`, marginRight: '8px', display: 'inline-block' }, tmpStyle);
+    return Object.assign({ fontSize: `${this.props.size || 16}px`, marginRight: '8px', display: 'inline-block' }, tmpStyle, tmpClassName);
   }
 
   constructor(props) {
