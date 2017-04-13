@@ -7,21 +7,85 @@
 */
 import { Link } from 'react-router-dom';
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Button, Icon, Menu, Dropdown, Modal, message, InputNumber, } from 'antd';
 import querystring from 'querystring';
 
 const confirm = Modal.confirm;
 
-let CreateBtn = React.createClass({
-  propTypes: {
-    href: React.PropTypes.string,
-    text: React.PropTypes.string,
-    margin: React.PropTypes.string,
-    size: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    background: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-  },
+class ZBtn extends React.Component {
+  static propTypes = {
+    href: PropTypes.string,
+    type: PropTypes.oneOf([ 'create', 'refresh', 'edit', 'status', 'batch', 'del', 'retrieve', 'sync', 'export', 'def' ]),
+    onClick: PropTypes.func,
+    disabled: PropTypes.bool,
+    text: PropTypes.string,
+    size: PropTypes.oneOf([ 'large', 'small' ]),
+  }
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    let padding = "5px 7px 5px 5px";
+    if(this.props.size === "large")
+      padding = "8px 15px 8px 8px";
+    let tmp = { padding };
+    const tmpStyle = Object.assign({}, { margin: "10px", ...tmp }, this.props.style || {} );
+    let btnClassName = "ant-create-btn";
+    let btnIcon = "plus";
+    let text = this.props.text || '创建';
+    switch(this.props.type) {
+      case 'create': {
+        btnClassName = "ant-create-btn";
+        btnIcon = "plus";
+        text = this.props.text || '创建';
+        break;
+      }
+      case 'edit': {
+        btnClassName = "ant-edit-btn";
+        btnIcon = "edit";
+        text = this.props.text || '编辑';
+        break;
+      };
+      default: {
+        break;
+      }
+    }
+
+    switch(this.props.type) {
+      case 'create': case 'edit': {
+        const icon = <Icon type={ btnIcon } className="icon-margin-btn"/>;
+        if (this.props.disabled) {
+          return <a href={`javascript:;`} className={ btnClassName } style={{...tmpStyle, background: '#bcbcbc'}}>{icon}{ text }</a>;
+        }
+        return(
+          <Link to={this.props.href}
+            className={ btnClassName }
+            onClick={this.props.onClick}
+            style={tmpStyle}
+          >
+            {icon}{text}
+          </Link>
+        );
+      }
+    }
+  }
+}
+
+class CreateBtn extends React.Component {
+  static propTypes = {
+    href: PropTypes.string,
+    text: PropTypes.string,
+    margin: PropTypes.string,
+    size: PropTypes.string,
+    onClick: PropTypes.func,
+    background: PropTypes.string,
+    disabled: PropTypes.bool,
+  }
+  constructor(props) {
+    super(props);
+  }
 
   render(){
     let padding = "5px 7px 5px 5px";
@@ -50,7 +114,7 @@ let CreateBtn = React.createClass({
       }
     }
   }
-})
+}
 
 let RefreshBtn = React.createClass({
   propTypes: {
@@ -441,4 +505,4 @@ let StatusBtn = React.createClass({
   }
 })
 
-module.exports = { CreateBtn, RefreshBtn, BatchBtn, DelBtn, EditBtn, RetrieveBtn, DefBtn, ExportExcelBtn, SyncBtn, StatusBtn } ;
+module.exports = { ZBtn, CreateBtn, RefreshBtn, BatchBtn, DelBtn, EditBtn, RetrieveBtn, DefBtn, ExportExcelBtn, SyncBtn, StatusBtn } ;

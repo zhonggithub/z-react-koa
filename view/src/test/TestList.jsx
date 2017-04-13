@@ -2,15 +2,15 @@
  * @Author: Zz
  * @Date: 2017-02-28 10:54:03
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-13 22:30:48
+ * @Last Modified time: 2017-04-13 23:51:27
  */
 import React from 'react';
 import moment from 'moment';
 import { inject, observer } from 'mobx-react';
 import { Alert, message, } from 'antd';
-import { ZTable, ZContentHeader, ZBreadcrumb, ZIcon } from '../components';
+import { ZTable, ZContentHeader, ZBreadcrumb, ZIcon,  } from '../components';
 import { accountStore } from '../stores';
-import { CreateBtn, RefreshBtn, ExportExcelBtn, DelBtn, EditBtn, RetrieveBtn, DefBtn, StatusBtn, }  from '../components/ZBtn'
+import { ZBtn, CreateBtn, RefreshBtn, ExportExcelBtn, DelBtn, EditBtn, RetrieveBtn, DefBtn, StatusBtn, }  from '../components/ZBtn'
 
 import '../style/style';
 
@@ -132,6 +132,13 @@ export default class PageAccountList extends React.Component {
         <div className="hms-content-style">
           <ZContentHeader content="用户列表" />
             <ZIcon iconfont='&#xe629;' onClick={this.iconClick}/>
+            <ZBtn type="create" size="large" disabled href="/zplatorm/sidenav/accountservice/accountedit" />
+            <ZBtn type="create" size="small" href="/zplatorm/sidenav/accountservice/accountedit" />
+            
+            <ZBtn type="edit" size="large" href="/zplatorm/sidenav/accountservice/accountedit" />
+            <ZBtn type="edit" size="small" href="/zplatorm/sidenav/accountservice/accountedit" />
+            
+            
             <CreateBtn margin="0px 5px 0px 0px" size="lagre" href="/zplatorm/sidenav/accountservice/accountedit" />
             <RefreshBtn margin="0px 5px 0px 5px" size="lagre" onClick={this.onRefreshBtn}/>
             <ExportExcelBtn size="lagre" href={`/group/api/groups/${'ll'}/exportexcel/orders`} params={this.state.params} fileName='集团管理-订单管理-无效订单' />
