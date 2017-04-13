@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-02-28 10:54:03
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-13 21:14:29
+ * @Last Modified time: 2017-04-13 21:50:25
  */
 import React from 'react';
 import moment from 'moment';
@@ -120,12 +120,15 @@ export default class PageAccountList extends React.Component {
         to: '/group/dockingplatform/crs',
       },{
         content: '用户列表',
+      },{
+        icon: <ZIcon iconfont='&#xe629;' className={{ marginRight: '4px'}}/>,
+        content: 'sfsf',
       }
     ];
     this.state.pagination.total = 10;// this.state.accountStore.total;
     return (
       <div className="hms-layout-container">
-        <ZBreadcrumb items={breadcrumbItems}/>
+        <ZBreadcrumb items={breadcrumbItems} separator="*"/>
         <div className="hms-content-style">
           <ZContentHeader content="用户列表" />
             <ZIcon iconfont='&#xe629;' onClick={this.iconClick}/>

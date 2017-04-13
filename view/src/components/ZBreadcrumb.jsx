@@ -6,6 +6,7 @@
 * @Last modified time: 2016-10-08T23:33:17+08:00
 */
 import React from 'react';
+import { computed } from 'mobx';
 import { Breadcrumb, Icon } from 'antd';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -22,6 +23,7 @@ export default class ZBreadcrumb extends React.Component {
         PropTypes.element
       ]),
     })),
+    separator: PropTypes.string,
   }
 
   constructor(props){
@@ -33,6 +35,10 @@ export default class ZBreadcrumb extends React.Component {
       return null;
     }
     return typeof item.icon === 'string' ? <ZIcon icon={item.icon} style={{marginRight: '5px'}}/> : item.icon;
+  }
+
+  @computed get separator() {
+    return this.props.separator || '>';
   }
 
   renderLink(item){
@@ -47,7 +53,6 @@ export default class ZBreadcrumb extends React.Component {
 
   renderItem(){
     const items = this.props.items;
-
     if(!items || items.length === 0)
       return null;
 
@@ -66,7 +71,7 @@ export default class ZBreadcrumb extends React.Component {
     return(
       <div>
         <div className="hms-layout-breadcrumb">
-          <Breadcrumb separator=">">
+          <Breadcrumb separator={this.separator}>
             {this.renderItem()}
           </Breadcrumb>
         </div>
