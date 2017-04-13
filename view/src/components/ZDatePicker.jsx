@@ -7,16 +7,20 @@
 */
 import { DatePicker } from 'antd';
 import React from 'react';
+import PropTypes from 'prop-types';
 import moment from 'moment';
 
 const RangePicker = DatePicker.RangePicker;
 
-export default class ZDefDatePicker extends React.Component {
+export default class ZDatePicker extends React.Component {
   static propTypes = {
-    onChange: React.PropTypes.func, //接受两个参数: dates, dateStrings
-    showTime: React.PropTypes.object,
-    placeholder: React.PropTypes.array,
-    format: React.PropTypes.string,
+    onChange: PropTypes.func, //接受两个参数: dates, dateStrings
+    showTime: PropTypes.object,
+    placeholder: PropTypes.array,
+    format: PropTypes.string,
+  }
+  constructor(props) {
+    super(props);
   }
 
   render() {
@@ -33,7 +37,7 @@ export default class ZDefDatePicker extends React.Component {
         }}
         showTime={ this.props.showTime || { format: 'HH:mm' } }
         placeholder={ this.props.placeholder || ['起始时间', '截止时间'] }
-        format={ this.props.placeholder || "YYYY-MM-DD HH:mm" }
+        format={ this.props.format || "YYYY-MM-DD HH:mm" }
         onChange={ this.props.onChange }
       />)
   }
