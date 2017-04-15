@@ -1,8 +1,14 @@
+/*
+ * @Author: Zz
+ * @Date: 2017-04-15 20:47:17
+ * @Last Modified by:   Zz
+ * @Last Modified time: 2017-04-15 20:47:17
+ */
 import ZLayout from './ZLayout';
 import ZNavigation from './ZNavigation';
 import ZSideNavigation from './ZSideNavigation';
 import ZFooter from './ZFooter';
-import ZBtn from './ZBtn';
+import ZButtion from './ZButtion';
 import ZContentHeader from './ZContentHeader';
 import ZIcon from './ZIcon';
 import ZBreadcrumb from './ZBreadcrumb';
@@ -24,7 +30,7 @@ module.exports = {
     ZFooter,
     ZNavigation,
     ZSideNavigation,
-    ZBtn,
+    ZButtion,
     ZContentHeader,
     ZIcon,
     ZBreadcrumb,
