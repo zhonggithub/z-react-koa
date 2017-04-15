@@ -2,9 +2,10 @@
  * @Author: Zz
  * @Date: 2017-04-11 20:38:24
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-12 00:01:38
+ * @Last Modified time: 2017-04-15 16:27:44
  */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 import { Icon, } from 'antd';
 import "./style.less";
@@ -14,7 +15,7 @@ import ZNavigation from './ZNavigation';
 
 export default class ZApp extends React.Component {
   static propTypes = {
-    routes: React.PropTypes.array.isRequired,
+    routes: PropTypes.array.isRequired,
   }
   constructor(props) {
     super(props);

@@ -6,6 +6,7 @@
 * @Last modified time: 2016-10-09T23:26:08+08:00
 */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link, history } from 'react-router-dom';
 import { Menu, Icon } from 'antd';
 import ZIcon from './ZIcon';
@@ -16,13 +17,13 @@ const SubMenu = Menu.SubMenu;
 
 export default class ZSideNavigation extends React.Component {
   static propTypes = {
-    collapse: React.PropTypes.bool,
-    defaultSelectedKeys: React.PropTypes.array,
-    defaultOpenKeys: React.PropTypes.array,
-    selectedKeys: React.PropTypes.array,
-    onSelect: React.PropTypes.func,
-    onClick: React.PropTypes.func,
-    menus: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    collapse: PropTypes.bool,
+    defaultSelectedKeys: PropTypes.array,
+    defaultOpenKeys: PropTypes.array,
+    selectedKeys: PropTypes.array,
+    onSelect: PropTypes.func,
+    onClick: PropTypes.func,
+    menus: PropTypes.arrayOf(PropTypes.object).isRequired,
   }
 
   constructor(props) {

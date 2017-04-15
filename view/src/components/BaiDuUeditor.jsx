@@ -1,10 +1,17 @@
-var React = require('react');
-var Editor = require('react-umeditor');
+/*
+ * @Author: Zz
+ * @Date: 2017-04-15 16:29:02
+ * @Last Modified by:   Zz
+ * @Last Modified time: 2017-04-15 16:29:02
+ */
+import React from 'react';
+import Editor from 'react-umeditor';
+import PropTypes from 'prop-types';
 
 export default class BaiDuUeditor extends React.Component {
   static propTypes = {
-    onChange: React.PropTypes.func,
-    content: React.PropTypes.string,
+    onChange: PropTypes.func,
+    content: PropTypes.string,
   }
   constructor(props){
     super(props);
