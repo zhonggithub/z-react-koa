@@ -2,25 +2,26 @@
  * @Author: Zz
  * @Date: 2017-02-28 10:34:19
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-12 22:08:58
+ * @Last Modified time: 2017-04-15 18:03:50
  */
 import React from 'react';
 import { ZSideNavigation, ZIcon } from '../components';
 
 const g_prefix = '/zplatorm/sidenav/';
-const g_defIconLargenSize = '24px';
+const g_defIconLargenSize = 24;
 const g_pageMenuDef = [
    {
      to: `${g_prefix}accountservice`,
-     text: '账号服务',
-     defIcon: <ZIcon iconfont='&#xe629;' />,
-     defIconLargen: <ZIcon iconfont='&#xe629;' size={g_defIconLargenSize} marginRight='0px' />,
+     text: '9999',
+     icon: <ZIcon iconfont='&#xe629;' />,
+     inlineIcon: <ZIcon iconfont='&#xe629;' size={g_defIconLargenSize} style={{marginRight: '0px'}} />,
      
      items: [
        {
        to: '/group/dockingplatform/weixin/overview',
        text: '概况',
-       defIcon: <ZIcon iconfont='&#xe61f;' /> ,
+       icon: <ZIcon iconfont='&#xe61f;' /> ,
+       inlineIcon: <ZIcon iconfont='&#xe61f;' />,
      },
      
      ]

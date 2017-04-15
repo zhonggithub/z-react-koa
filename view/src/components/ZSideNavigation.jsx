@@ -23,7 +23,24 @@ export default class ZSideNavigation extends React.Component {
     selectedKeys: PropTypes.array,
     onSelect: PropTypes.func,
     onClick: PropTypes.func,
-    menus: PropTypes.arrayOf(PropTypes.object).isRequired,
+    menus: PropTypes.arrayOf(PropTypes.shape({
+      to: PropTypes.string,
+      text: PropTypes.string,
+      icon: PropTypes.oneOfType([
+        PropTypes.string,
+        PropTypes.element,
+      ]),
+      inlineIcon: PropTypes.element, // icon 为PropTypes.element 需要定义
+      item: PropTypes.arrayOf(PropTypes.shape({
+        to: PropTypes.string,
+        text: PropTypes.string,
+        icon: PropTypes.oneOfType([
+          PropTypes.string,
+          PropTypes.element,
+        ]),
+        inlineIcon: PropTypes.element,
+      })),
+    })).isRequired,
   }
 
   constructor(props) {
@@ -43,22 +60,17 @@ export default class ZSideNavigation extends React.Component {
   rendIcon(item) {
     if(!item)
       return;
-    if(item.defIcon || item.defIconSmall || item.defIconLargen){
-      if((item.defIconSmall || item.defIcon) && !this.props.collapse){
-        return (item.defIconSmall || item.defIcon);
-      }
-      if(item.defIconLargen && this.props.collapse){
-        return item.defIconLargen;
-      }
-      else{
-        return (item.defIconSmall || item.defIcon);
-      }
+    
+    if (item.inlineIcon && this.props.collapse) {
+      return item.inlineIcon;
     }
 
-    if(item.icon)
-      return ( <ZIcon icon={item.icon} size={this.props.collapse ? '24px' : '16px'}/> );
-    else if(item.iconfont)
-      return ( <ZIcon iconfont={item.iconfont} size={this.props.collapse ? '24px' : '16px'} /> );
+    if(typeof item.icon !== 'string' && !this.props.collapse) {
+      return item.icon;
+    }
+
+    if(typeof item.icon === 'string')
+      return ( <ZIcon icon={item.icon} size={this.props.collapse ? 24 : 16 }/> );
     else {
       return null;
     }
@@ -67,7 +79,7 @@ export default class ZSideNavigation extends React.Component {
   renderMenuItem(items) {
     if(!items)
       return null;
-    const spanFontSize = {"fontSize": "14px"};
+    const spanFontSize = {fontSize: "14px"};
     return items.map( item => {
       if (item.items) {
         return this.renderSubMenu([item], false);

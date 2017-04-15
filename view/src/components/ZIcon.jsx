@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-04-10 21:17:12
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-15 10:24:57
+ * @Last Modified time: 2017-04-15 18:02:56
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -44,6 +44,6 @@ export default class ZIcon extends React.Component {
     
     if(this.props.icon)
       return <Icon { ...tmpProps } type={this.props.icon} style={this.style} />
-    return (<i { ...tmpProps } className="iconfont" style={this.style}>{ this.props.iconfont}</i>);
+    return (<i className="iconfont" { ...tmpProps }  style={this.style}>{ this.props.iconfont}</i>);
   }
 }
