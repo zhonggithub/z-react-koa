@@ -34,7 +34,7 @@ class ZBtn extends React.Component {
     if(this.props.size === "large")
       padding = "8px 15px 8px 8px";
     let tmp = { padding };
-    const tmpStyle = Object.assign({}, { margin: "10px", ...tmp }, this.props.style || {} );
+    const tmpStyle = Object.assign({}, { margin: "5px", ...tmp }, this.props.style || {} );
     let btnClassName = "ant-create-btn";
     let btnIcon = "plus";
     let text = this.props.text || '创建';
@@ -168,7 +168,7 @@ class ZDelBtn extends React.Component {
     if(this.props.size === "large")
       padding = "8px 15px 8px 8px";
     let tmp = { padding };
-    const tmpStyle = Object.assign({}, { margin: "10px", ...tmp }, this.props.style || {} );
+    const tmpStyle = Object.assign({}, { margin: "5px", ...tmp }, this.props.style || {} );
     
     if (this.props.disabled) {
       return <a href={`javascript:;`} className="ant-delete-btn" style={{...tmpStyle, background: '#bcbcbc' }}><Icon type="delete" className="icon-margin-btn"/>{this.props.text || '删除'}</a>;
@@ -320,7 +320,7 @@ class ZExportExcelBtn extends React.Component {
     if(this.props.size === "large")
       padding = "8px 15px 8px 8px";
     let tmp = { padding };
-    const tmpStyle = Object.assign({}, { margin: "10px", ...tmp }, this.props.style || {} );
+    const tmpStyle = Object.assign({}, { margin: "5px", ...tmp }, this.props.style || {} );
     
     const content = <div>
       <InputNumber min={1} step={10} defaultValue={1} onChange={this.onInputNumberChange.bind(this, 'begin')}/>

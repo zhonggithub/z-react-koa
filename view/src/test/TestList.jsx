@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-02-28 10:54:03
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-15 15:40:14
+ * @Last Modified time: 2017-04-15 15:51:12
  */
 import React from 'react';
 import moment from 'moment';
@@ -132,17 +132,17 @@ export default class PageAccountList extends React.Component {
         <div className="hms-content-style">
           <ZContentHeader content="用户列表" />
             <ZIcon iconfont='&#xe629;' onClick={this.iconClick}/>
-            <ZBtn type="create" size="large" disabled href="/zplatorm/sidenav/accountservice/accountedit" />
-            <ZBtn type="create" size="small" href="/zplatorm/sidenav/accountservice/accountedit" />
+            <ZBtn type="create" disabled href="/zplatorm/sidenav/accountservice/accountedit" />
+            <ZBtn type="create" href="/zplatorm/sidenav/accountservice/accountedit" />
             
-            <ZBtn type="edit" size="large" href="/zplatorm/sidenav/accountservice/accountedit" />
-            <ZBtn type="edit" size="small" href="/zplatorm/sidenav/accountservice/accountedit" />
+            <ZBtn type="edit" href="/zplatorm/sidenav/accountservice/accountedit" />
+            <ZBtn type="edit" href="/zplatorm/sidenav/accountservice/accountedit" />
             
             
-            <ZBtn type="refresh" size="large" onClick={this.onRefreshBtn}/>
-            <ZBtn type="sync" size="large" onClick={this.onRefreshBtn}/>
-            <ZBtn type="retrieve" href="/zplatorm/sidenav/accountservice/accountedit" size="large" onClick={this.onRefreshBtn}/>
-            <ZExportExcelBtn size="large" href={`/group/api/groups/${'ll'}/exportexcel/orders`} params={this.state.params} fileName='集团管理-订单管理-无效订单' />
+            <ZBtn type="refresh" onClick={this.onRefreshBtn}/>
+            <ZBtn type="sync" onClick={this.onRefreshBtn}/>
+            <ZBtn type="retrieve" href="/zplatorm/sidenav/accountservice/accountedit" onClick={this.onRefreshBtn}/>
+            <ZExportExcelBtn href={`/group/api/groups/${'ll'}/exportexcel/orders`} params={this.state.params} fileName='集团管理-订单管理-无效订单' />
             <ZBtn type="status"/> 
             <ZBtn type="status" status={false}/>
             <ZDelBtn/>
