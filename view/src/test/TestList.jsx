@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-02-28 10:54:03
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-15 15:51:12
+ * @Last Modified time: 2017-04-15 18:05:48
  */
 import React from 'react';
 import moment from 'moment';
@@ -136,8 +136,6 @@ export default class PageAccountList extends React.Component {
             <ZBtn type="create" href="/zplatorm/sidenav/accountservice/accountedit" />
             
             <ZBtn type="edit" href="/zplatorm/sidenav/accountservice/accountedit" />
-            <ZBtn type="edit" href="/zplatorm/sidenav/accountservice/accountedit" />
-            
             
             <ZBtn type="refresh" onClick={this.onRefreshBtn}/>
             <ZBtn type="sync" onClick={this.onRefreshBtn}/>
