@@ -1,8 +1,7 @@
 import React from 'react';
 
-//import 'antd/dist/antd.less';
 import './style.less';
-const ZFooter = React.createClass({
+export default class ZFooter extends React.Component {
   render(){
     return (
       <div id="footer" className="footer-wrap">
@@ -12,5 +11,4 @@ const ZFooter = React.createClass({
       </div>
     );
   }
-});
-module.exports = ZFooter;
+};

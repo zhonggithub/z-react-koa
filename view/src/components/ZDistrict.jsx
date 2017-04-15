@@ -1,23 +1,24 @@
 /*
  * @Author: Zz
  * @Date: 2017-04-10 21:16:56
- * @Last Modified by:   Zz
- * @Last Modified time: 2017-04-10 21:16:56
+ * @Last Modified by: Zz
+ * @Last Modified time: 2017-04-15 15:56:31
  */
 import React from 'react';
 import { Select } from 'antd';
+import PropTypes from 'prop-types';
 import { administrativeDistrict } from '../common';
 
 const Option = Select.Option;
 
-export default class ZDefDistrict extends React.Component {
+export default class ZDistrict extends React.Component {
   static propTypes = {
-    onChange: React.PropTypes.func,
-    level: React.PropTypes.number,
-    address: React.PropTypes.shape({
-      province: React.PropTypes.string,
-      city: React.PropTypes.string,
-      district: React.PropTypes.string,
+    onChange: PropTypes.func,
+    level: PropTypes.number,
+    address: PropTypes.shape({
+      province: PropTypes.string,
+      city: PropTypes.string,
+      district: PropTypes.string,
     }),
   }
   constructor(props) {
