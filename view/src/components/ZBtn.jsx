@@ -16,11 +16,14 @@ const confirm = Modal.confirm;
 class ZBtn extends React.Component {
   static propTypes = {
     href: PropTypes.string,
-    type: PropTypes.oneOf([ 'create', 'refresh', 'edit', 'status', 'batch', 'del', 'retrieve', 'sync', 'export', 'def' ]),
+    type: PropTypes.oneOf([ 'create', 'retrieve', 'refresh', 'edit', 'status', 'batch', 'retrieve', 'sync', 'def' ]),
     onClick: PropTypes.func,
     disabled: PropTypes.bool,
-    text: PropTypes.string,
+    text: PropTypes.oneOfType([ PropTypes.string, PropTypes.array ]), // 状态按钮为array
     size: PropTypes.oneOf([ 'large', 'small' ]),
+    overlay: PropTypes.array, //批量操作按钮
+    status: PropTypes.bool, // 态态按钮设置false 样式不一样
+    icon: PropTypes.oneOfType([ PropTypes.array, PropTypes.string ]), // 状态按钮为array
   }
   constructor(props) {
     super(props);
@@ -38,23 +41,55 @@ class ZBtn extends React.Component {
     switch(this.props.type) {
       case 'create': {
         btnClassName = "ant-create-btn";
-        btnIcon = "plus";
+        btnIcon = this.props.icon || "plus";
         text = this.props.text || '创建';
         break;
       }
       case 'edit': {
         btnClassName = "ant-edit-btn";
-        btnIcon = "edit";
+        btnIcon = this.props.icon || "edit";
         text = this.props.text || '编辑';
         break;
       };
+      case 'retrieve': {
+        btnClassName = 'ant-retrieve-btn';
+        btnIcon = this.props.icon || 'info-circle-o';
+        text = this.props.text || "查看详情";
+        break;
+      }
+      case 'refresh': {
+        btnClassName = 'ant-refresh-btn';
+        btnIcon = this.props.icon || 'reload';
+        text = this.props.text || '刷新';
+        break;
+      }
+      case 'batch': {
+        btnClassName = 'ant-batch-btn';
+        btnIcon = this.props.icon || 'check-square-o';
+        text = this.props.text || '批量操作';
+        break;
+      }
+      case 'sync': {
+        btnClassName = 'ant-sync-btn';
+        btnIcon = this.props.icon || 'retweet';
+        text = this.props.text || '同步';
+        break;
+      }
+      case 'status': {
+        btnClassName = 'ant-status-btn';
+        if (this.props.status === false) {
+          btnClassName = 'ant-status-btn-false';
+        }
+        btnIcon = this.props.icon || ['unlock', 'lock'];
+        text = this.props.text || ['有效', '无效'];
+      }
       default: {
         break;
       }
     }
 
     switch(this.props.type) {
-      case 'create': case 'edit': {
+      case 'create': case 'edit': case 'retrieve': {
         const icon = <Icon type={ btnIcon } className="icon-margin-btn"/>;
         if (this.props.disabled) {
           return <a href={`javascript:;`} className={ btnClassName } style={{...tmpStyle, background: '#bcbcbc'}}>{icon}{ text }</a>;
@@ -69,236 +104,91 @@ class ZBtn extends React.Component {
           </Link>
         );
       }
+      case 'refresh': case 'sync':{
+        const icon = <Icon type={ btnIcon } className="icon-margin-btn"/>;
+        if (this.props.disabled) {
+          return <a href={`javascript:;`} onClick={this.props.onClick} className={ btnClassName } style={{ ...tmpStyle, background: '#bcbcbc'}}>{icon}{text}</a>;
+        } else {
+          return <a href={this.props.href|| `javascript:;`} onClick={this.props.onClick} className={ btnClassName } style={tmpStyle}>{icon}{text}</a>;
+        }
+      }
+      case 'batch': {
+        const overlay = this.props.overlay || [];
+        if (this.props.disabled) {
+          return (
+            <Dropdown overlay={overlay}>
+              <span className={ btnClassName } style={{ ...tmpStyle, background: '#bcbcbc' }}>{icon}{text} <Icon type='down'/></span>
+            </Dropdown>
+          )
+        } else {
+          return (
+            <Dropdown overlay={ overlay }>
+              <span className={ btnClassName } style={tmpStyle}>{icon}{text} <Icon type='down'/></span>
+            </Dropdown>
+          )
+        }
+      }
+      case 'status': {
+        const icon = <Icon type={this.props.status === false ? btnIcon[1] : btnIcon[0]} className="icon-margin-btn"/>
+        if (this.props.disabled) {
+          return <a href={`javascript:;`} onClick={this.props.onClick} className={btnClassName} style={{...tmpStyle, background: '#bcbcbc'}}>{icon}{text[0]}</a>;
+        } else {
+          if (this.props.status === false) {
+            return <a href={`javascript:;`} onClick={this.props.onClick} className={btnClassName} style={tmpStyle}>{icon}{text[1]}</a>;
+          }
+          return <a href={`javascript:;`} onClick={this.props.onClick} className={btnClassName} style={tmpStyle}>{icon}{text[0]}</a>;
+        }
+      }
     }
   }
 }
 
-class CreateBtn extends React.Component {
+class ZDelBtn extends React.Component {
   static propTypes = {
-    href: PropTypes.string,
-    text: PropTypes.string,
-    margin: PropTypes.string,
-    size: PropTypes.string,
     onClick: PropTypes.func,
-    background: PropTypes.string,
+    size: PropTypes.oneOf([ 'large', 'small' ]),
+    text: PropTypes.string,
     disabled: PropTypes.bool,
   }
-  constructor(props) {
-    super(props);
-  }
 
-  render(){
-    let padding = "5px 7px 5px 5px";
-    if(this.props.size === "lagre")
-      padding = "8px 15px 8px 8px";
-    let tmp = { padding };
-    if(this.props.background){
-      tmp.background = this.props.background;
-    }
-    if (this.props.disabled) {
-      return <a href={`javascript:;`} className="ant-create-btn" style={{margin: this.props.margin || "10px", ...tmp, background: '#bcbcbc'}}><Icon type="plus" className="icon-margin-btn"/>{this.props.text || '创建'}</a>;
-    } else {
-      if(!this.props.aLink) {
-        return(
-            <Link to={this.props.href}
-              className="ant-create-btn"
-              onClick={this.props.onClick}
-              style={{margin: this.props.margin ? this.props.margin: "10px", ...tmp}}
-            >
-              <Icon type="plus" className="icon-margin-btn"/>{this.props.text || '创建'}
-            </Link>
-        );
-      }
-      else {
-        return <a href={this.props.href || `javascript:;`} onClick={this.props.onClick} className="ant-create-btn" style={{margin: this.props.margin || "10px", ...tmp}}><Icon type="plus" className="icon-margin-btn"/>{this.props.text || '创建'}</a>;
-      }
-    }
-  }
-}
-
-let RefreshBtn = React.createClass({
-  propTypes: {
-    href: React.PropTypes.string,
-    text: React.PropTypes.string,
-    margin: React.PropTypes.string,
-    size: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    background: React.PropTypes.string,
-    disabled: React.PropTypes.bool,
-  },
-
-  render(){
-    let padding = "5px 7px 5px 5px";
-    if(this.props.size === "lagre")
-      padding = "8px 15px 8px 8px";
-    let tmp = { padding };
-    if(this.props.background){
-      tmp.background = this.props.background;
-    }
-    if (this.props.disabled) {
-      return <a href={`javascript:;`} onClick={this.props.onClick} className="ant-refresh-btn" style={{margin: this.props.margin || "10px", ...tmp, background: '#bcbcbc'}}><Icon type="reload" className="icon-margin-btn"/>{this.props.text || '刷新'}</a>;
-    } else {
-      return <a href={this.props.href|| `javascript:;`} onClick={this.props.onClick} className="ant-refresh-btn" style={{margin: this.props.margin || "10px", ...tmp}}><Icon type="reload" className="icon-margin-btn"/>{this.props.text || '刷新'}</a>;
-    }
-  }
-})
-
-//BatchBtn 必须定义overlay
-let BatchBtn = React.createClass({
-    propTypes: {
-      href: React.PropTypes.string,
-      text: React.PropTypes.string,
-      margin: React.PropTypes.string,
-      size: React.PropTypes.string,
-      background: React.PropTypes.string,
-      disabled: React.PropTypes.bool,
-      //overlay: React.PropTypes.array,
-    },
-
-    render(){
-      let padding = "5px 7px 5px 5px";
-      if(this.props.size === "lagre")
-        padding = "8px 15px 8px 8px";
-      let tmp = { padding };
-      if(this.props.background){
-        tmp.background = this.props.background;
-      }
-      const overlay = this.props.overlay;
-      if (this.props.disabled) {
-        return (
-          <Dropdown overlay={[]}>
-            <span className="ant-batch-btn" style={{margin: this.props.margin || "10px", ...tmp, background: '#bcbcbc' }}><Icon type="check-square-o" className="icon-margin-btn"/>{this.props.text || "批量操作"} <Icon type='down'/></span>
-          </Dropdown>
-        )
-      } else {
-        return (
-          <Dropdown overlay={ overlay }>
-            <span className="ant-batch-btn" style={{margin: this.props.margin || "10px", ...tmp }}><Icon type="check-square-o" className="icon-margin-btn"/>{this.props.text || "批量操作"} <Icon type='down'/></span>
-          </Dropdown>
-        )
-     }
-  }
-});
-
-let DelBtn = React.createClass({
-  propTypes : {
-    href: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    size: React.PropTypes.string,
-    background: React.PropTypes.string,
-    text: React.PropTypes.string,
-  },
-
-  showConfirm() {
-    let _this = this;
+  showConfirm = () => {
+    const tmpThis = this;
     confirm({
       title: '确定删除吗?',
       onOk() {
-        if(_this.props)
-          _this.props.onClick();
+        if(tmpThis.props.onClick)
+          tmpThis.props.onClick();
       },
       onCancel() {},
     });
-  },
+  }
 
   render(){
     let padding = "5px 7px 5px 5px";
-    if(this.props.size === "lagre")
+    if(this.props.size === "large")
       padding = "8px 15px 8px 8px";
     let tmp = { padding };
-    if(this.props.background){
-      tmp.background = this.props.background;
-    }
+    const tmpStyle = Object.assign({}, { margin: "10px", ...tmp }, this.props.style || {} );
+    
     if (this.props.disabled) {
-      return <a href={`javascript:;`} className="ant-delete-btn" style={{...tmp, background: '#bcbcbc' }}><Icon type="delete" className="icon-margin-btn"/>{this.props.text || '删除'}</a>;
+      return <a href={`javascript:;`} className="ant-delete-btn" style={{...tmpStyle, background: '#bcbcbc' }}><Icon type="delete" className="icon-margin-btn"/>{this.props.text || '删除'}</a>;
     } else {
-      return <a href={this.props.href|| `javascript:;`} onClick={this.showConfirm} className="ant-delete-btn" style={tmp}><Icon type="delete" className="icon-margin-btn"/>{this.props.text || '删除'}</a>;
+      return <a href={this.props.href|| `javascript:;`} onClick={this.showConfirm} className="ant-delete-btn" style={tmpStyle}><Icon type="delete" className="icon-margin-btn"/>{this.props.text || '删除'}</a>;
     }
   }
-})
+}
 
-let EditBtn = React.createClass({
-  propTypes : {
-    href: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    size: React.PropTypes.string,
-    text: React.PropTypes.string,
-    background: React.PropTypes.string,
-    icon: React.PropTypes.string,
-  },
-
-  render(){
-    let padding = "5px 7px 5px 5px";
-    if(this.props.size === "lagre")
-      padding = "8px 15px 8px 8px";
-    let tmp = {padding: padding};
-    if(this.props.background){
-      tmp.background = this.props.background;
-    }
-    if (this.props.disabled) {
-      return <a href={`javascript:;`} className="ant-edit-btn" style={{...tmp, background: '#bcbcbc'}}><Icon type={this.props.icon||"edit"} className="icon-margin-btn"/>{this.props.text||'编辑'}</a>;
-    } else {
-      if(!this.props.aLink){
-        return (
-          <Link
-            to={this.props.href}
-            className="ant-edit-btn"
-            style={tmp}
-            onClick={this.props.onClick}
-          >
-            <Icon type={this.props.icon||"edit"} className="icon-margin-btn"/>{this.props.text || '编辑'}
-          </Link>
-        )
-      } else {
-        return <a href={this.props.href|| `javascript:;`} onClick={this.props.onClick} className="ant-edit-btn" style={tmp}><Icon type={this.props.icon||"edit"} className="icon-margin-btn"/>{this.props.text||'编辑'}</a>;
-      }
-    }
+class ZDefBtn extends React.Component {
+  static propTypes = {
+    href: PropTypes.string,
+    text: PropTypes.string,
+    icon: PropTypes.string,
+    iconfont: PropTypes.element,
+    onClick: PropTypes.func,
+    size: PropTypes.oneOf([ 'large', 'small' ]),
+    disabled: PropTypes.bool,
+    className: PropTypes.string,
   }
-})
-
-let RetrieveBtn = React.createClass({
-  propTypes : {
-    href: React.PropTypes.string,
-    text: React.PropTypes.string,
-    background: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    size: React.PropTypes.string,
-  },
-
-  render(){
-    let padding = "5px 7px 5px 5px";
-    if(this.props.size === "lagre")
-      padding = "8px 15px 8px 8px";
-    if (this.props.disabled) {
-      return <a href={`javascript:;`} className="ant-retrieve-btn" style={{background: "#bcbcbc", padding}}><Icon type="info-circle-o" className="icon-margin-btn"/>{this.props.text || "查看详情"}</a>;
-    } else {
-      if(!this.props.aLink){
-        return (
-          <Link
-            to={this.props.href}
-            className="ant-retrieve-btn"
-            style={{ padding }}
-          >
-            <Icon type="info-circle-o" className="icon-margin-btn"/>{this.props.text || "查看详情"}
-          </Link>
-        )
-      } else {
-        return <a href={this.props.href|| `javascript:;`} onClick={this.props.onClick} className="ant-retrieve-btn" style={{"background": this.props.background || "#3598dc", padding: padding}}><Icon type="info-circle-o" className="icon-margin-btn"/>{this.props.text || "查看详情"}</a>;
-      }
-    }
-  }
-})
-
-let DefBtn = React.createClass({
-  propTypes : {
-    href: React.PropTypes.string,
-    text: React.PropTypes.string,
-    icon: React.PropTypes.string,
-    iconfont: React.PropTypes.element,
-    onClick: React.PropTypes.func,
-    size: React.PropTypes.string,
-    calssName: React.PropTypes.string,
-  },
 
   render(){
     let className = 'ant-def-btn';
@@ -317,7 +207,7 @@ let DefBtn = React.createClass({
 
     if(!this.props.aLink){
       return (
-        <Link to={this.props.href} className={this.props.className || className} onClick={this.props.onClick}>
+        <Link to={this.props.href ||'javascript:;'} className={this.props.className || className} onClick={this.props.onClick}>
           {content}
         </Link>
       )
@@ -329,29 +219,29 @@ let DefBtn = React.createClass({
       </a>
     )
   }
-})
+}
 
-let ExportExcelBtn = React.createClass({
-  propTypes : {
-    href: React.PropTypes.string,
-    text: React.PropTypes.string,
-    background: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    size: React.PropTypes.string,
-    params: React.PropTypes.object,
-    fileName: React.PropTypes.string,
-  },
+class ZExportExcelBtn extends React.Component {
+  static propTypes = {
+    href: PropTypes.string.isRequired,
+    text: PropTypes.string,
+    onClick: PropTypes.func,
+    size: PropTypes.oneOf([ 'large', 'small' ]),
+    params: PropTypes.object,
+    fileName: PropTypes.string,
+  }
 
-  getInitialState() {
-    return {
+  constructor (props) {
+    super(props);
+    this.state = {
       unit: 2000,
       begin: 1,
       end: 2000,
       visible: false,
     }
-  },
+  }
 
-  onClick() {
+  onClick = () => {
     if(!this.props.href) {
       message.error(`错误的href!`);
       return;
@@ -364,17 +254,16 @@ let ExportExcelBtn = React.createClass({
     if (this.props.fileName) {
       params.fileName = this.props.fileName;
     }
-    delete params.page;
-    delete params.pageSize;
+    
     location.href = `${this.props.href}?${querystring.stringify(params)}&token=${sessionStorage.getItem('jwt:token')}`;
     this.setState( {
       unit: 2000,
       begin: 1,
       end: 2000,
     });
-  },
+  }
 
-  onInputNumberChange(type, value) {
+  onInputNumberChange = (type, value) => {
     switch(type) {
       case 'begin': {
         this.setState({
@@ -388,26 +277,26 @@ let ExportExcelBtn = React.createClass({
         });
       }break;
     }
-  },
+  }
 
-  showModal() {
+  showModal = () => {
     this.setState({
       visible: true,
     });
-  },
-  handleOk() {
+  }
+  handleOk = () => {
     this.onClick();
     this.setState({
       visible: false,
     });
-  },
-  handleCancel(e) {
+  }
+  handleCancel = (e) => {
     this.setState({
       visible: false,
     });
-  },
+  }
 
-  showConfirm() {
+  showConfirm = () => {
     let _this = this;
     const content = <div>
       <InputNumber min={1} step={10} defaultValue={1} onChange={_this.onInputNumberChange.bind(_this, 'begin')}/>
@@ -424,12 +313,15 @@ let ExportExcelBtn = React.createClass({
       onCancel() {
       },
     });
-  },
+  }
 
   render(){
     let padding = "5px 7px 5px 5px";
-    if(this.props.size === "lagre")
+    if(this.props.size === "large")
       padding = "8px 15px 8px 8px";
+    let tmp = { padding };
+    const tmpStyle = Object.assign({}, { margin: "10px", ...tmp }, this.props.style || {} );
+    
     const content = <div>
       <InputNumber min={1} step={10} defaultValue={1} onChange={this.onInputNumberChange.bind(this, 'begin')}/>
       <span> 至 </span>
@@ -437,7 +329,7 @@ let ExportExcelBtn = React.createClass({
     </div>;
     return (
       <span>
-        <a href={`javascript:;`} onClick={this.props.onClick || this.showModal} className="ant-export-excel-btn" style={{padding}}><Icon type="file-excel" className="icon-margin-btn"/>{this.props.text || "导出Excel"}</a>
+        <a href={`javascript:;`} onClick={this.props.onClick || this.showModal} className="ant-export-excel-btn" style={tmpStyle}><Icon type="file-excel" className="icon-margin-btn"/>{this.props.text || "导出Excel"}</a>
         <Modal title={<span><Icon style={{fontSize: '24px', color: '#108ee9'}} type='info-circle'/><span style={{fontSize: '14px', fontWeight: 'bold', color: '#666'}}> 一次最多只能导出 2000 条数据</span></span>} visible={this.state.visible}
           onOk={this.handleOk} onCancel={this.handleCancel}
         >
@@ -446,63 +338,6 @@ let ExportExcelBtn = React.createClass({
       </span>
     )
   }
-})
+}
 
-let SyncBtn = React.createClass({
-  propTypes: {
-    href: React.PropTypes.string,
-    text: React.PropTypes.string,
-    margin: React.PropTypes.string,
-    size: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    disabled: React.PropTypes.bool,
-  },
-
-  render(){
-    let padding = "5px 7px 5px 5px";
-    if(this.props.size === "lagre")
-      padding = "8px 15px 8px 8px";
-    let tmp = { padding };
-    if(this.props.background){
-      tmp.background = this.props.background;
-    }
-    if (this.props.disabled) {
-      return <a href={`javascript:;`} onClick={this.props.onClick} className="ant-sync-btn" style={{margin: this.props.margin || "10px", ...tmp, background: '#bcbcbc'}}><Icon type="retweet" className="icon-margin-btn"/>{this.props.text || '刷新'}</a>;
-    } else {
-      return <a href={this.props.href || `javascript:;`} onClick={this.props.onClick} className="ant-sync-btn" style={{margin: this.props.margin || "10px", ...tmp}}><Icon type="retweet" className="icon-margin-btn"/>{this.props.text || '刷新'}</a>;
-    }
-  }
-})
-
-let StatusBtn = React.createClass({
-  propTypes: {
-    text: React.PropTypes.array,
-    margin: React.PropTypes.string,
-    size: React.PropTypes.string,
-    onClick: React.PropTypes.func,
-    disabled: React.PropTypes.bool,
-    icon: React.PropTypes.array,
-    iconfont: React.PropTypes.array,
-    status: React.PropTypes.bool,
-  },
-
-  render(){
-    let padding = "5px 7px 5px 5px";
-    if(this.props.size === "lagre")
-      padding = "8px 15px 8px 8px";
-    let tmp = { padding };
-    if(this.props.background){
-      tmp.background = this.props.background;
-    }
-    if (this.props.disabled) {
-      return <a href={`javascript:;`} onClick={this.props.onClick} className="ant-status-btn" style={{margin: this.props.margin || "10px", ...tmp, background: '#bcbcbc'}}><Icon type="retweet" className="icon-margin-btn"/>{this.props.text[1]}</a>;
-    } else {
-      if (this.props.status === true) {
-        return <a href={`javascript:;`} onClick={this.props.onClick} className="ant-status-btn" style={{margin: this.props.margin || "10px", ...tmp}}><Icon type={this.props.icon[1]} className="icon-margin-btn"/>{this.props.text[1]}</a>;
-      }
-      return <a href={`javascript:;`} onClick={this.props.onClick} className="ant-status-btn-false" style={{margin: this.props.margin || "10px", ...tmp}}><Icon type={this.props.icon[0]} className="icon-margin-btn"/>{this.props.text[0]}</a>;
-    }
-  }
-})
-
-module.exports = { ZBtn, CreateBtn, RefreshBtn, BatchBtn, DelBtn, EditBtn, RetrieveBtn, DefBtn, ExportExcelBtn, SyncBtn, StatusBtn } ;
+module.exports = { ZBtn, ZDelBtn, ZExportExcelBtn, ZDefBtn } ;
