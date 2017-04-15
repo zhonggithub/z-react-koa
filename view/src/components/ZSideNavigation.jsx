@@ -8,7 +8,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, history } from 'react-router-dom';
-import { Menu, Icon } from 'antd';
+import { Menu, } from 'antd';
 import ZIcon from './ZIcon';
 
 import './style.less';
