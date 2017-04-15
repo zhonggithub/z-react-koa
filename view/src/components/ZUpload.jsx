@@ -6,6 +6,7 @@
 * @Last modified time: 2016-10-12T23:18:53+08:00
 */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Upload, Icon, message, Modal, Button, Tabs, Spin, } from 'antd';
 import ZIcon from './ZIcon';
 
@@ -14,10 +15,10 @@ const TabPane = Tabs.TabPane;
 
 class ZUpload extends React.Component {
   static propTypes = {
-    action: React.PropTypes.string,
-    onChange: React.PropTypes.func, //图片上传回调函数，参数：fileList
-    defaultFileList: React.PropTypes.array, // [ {uid: '', href: ''} ]
-    only: React.PropTypes.bool, //只是单选,如果定义了该属性,请确保defaultFileList是长度为一的数组,否则图片预览时始终替换第一个图片
+    action: PropTypes.string,
+    onChange: PropTypes.func, //图片上传回调函数，参数：fileList
+    defaultFileList: PropTypes.array, // [ {uid: '', href: ''} ]
+    only: PropTypes.bool, //只是单选,如果定义了该属性,请确保defaultFileList是长度为一的数组,否则图片预览时始终替换第一个图片
   }
   constructor(props) {
     super(props);
@@ -325,37 +326,38 @@ class ZUpload extends React.Component {
   }
 }
 
-const ZPictureAppear = React.createClass({
-  propTypes: {
-    width: React.PropTypes.string,
-    height: React.PropTypes.string,
-    imageUrl: React.PropTypes.string,
-  },
+class ZPictureAppear extends React.Component {
+  static propTypes = {
+    width: PropTypes.string,
+    height: PropTypes.string,
+    imageUrl: PropTypes.string,
+  }
 
-  getInitialState(){
-    return {
+  constructor(props){
+    super(props);
+    this.state = {
       previewVisible: false,
       width: '80px',
       height: '80px',
       isShow: true,
     };
-  },
+  }
 
   onImageClick(){
     this.setState({
       previewVisible: true,
     });
-  },
+  }
 
   handlePreviewCancel(){
     this.setState({previewVisible: false,});
-  },
+  }
 
   onImageDelClick(){
     this.setState({
       isShow: false,
     });
-  },
+  }
 
   render(){
     if (this.props.imageUrl && this.state.isShow) {
@@ -385,7 +387,7 @@ const ZPictureAppear = React.createClass({
      } else {
       return null;
     }
-  },
-});
+  }
+};
 
 module.exports = { ZUpload, ZPictureAppear } ;

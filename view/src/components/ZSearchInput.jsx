@@ -10,28 +10,29 @@ import { Input, Button } from 'antd';
 import classNames from 'classnames';
 const InputGroup = Input.Group;
 
-const ZSearchInput = React.createClass({
-  getInitialState() {
-    return {
+export default class ZSearchInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
       value: '',
       focus: false,
     };
-  },
-  handleInputChange(e) {
+  }
+  handleInputChange = (e) => {
     this.setState({
       value: e.target.value,
     });
-  },
-  handleFocusBlur(e) {
+  }
+  handleFocusBlur = (e) => {
     this.setState({
       focus: e.target === document.activeElement,
     });
-  },
-  handleSearch() {
+  }
+  handleSearch = () => {
     if (this.props.onSearch) {
       this.props.onSearch(this.state.value);
     }
-  },
+  }
   render() {
     const { style, size, placeholder } = this.props;
     const btnCls = classNames({
@@ -54,6 +55,5 @@ const ZSearchInput = React.createClass({
         </InputGroup>
       </div>
     );
-  },
-});
-module.exports = ZSearchInput;
+  }
+};
