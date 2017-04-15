@@ -1,7 +1,13 @@
+/*
+ * @Author: Zz
+ * @Date: 2017-04-15 16:00:35
+ * @Last Modified by:   Zz
+ * @Last Modified time: 2017-04-15 16:00:35
+ */
 import React from 'react';
 import { Button, Input, Row, Col, message } from 'antd';
 
-class ZNumberInput extends React.Component{
+export default class ZNumberInput extends React.Component{
   constructor(props){
     super(props);
 
@@ -98,5 +104,3 @@ class ZNumberInput extends React.Component{
     );
   }
 }
-
-module.exports = ZNumberInput;

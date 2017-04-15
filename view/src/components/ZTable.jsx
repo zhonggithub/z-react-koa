@@ -1,4 +1,11 @@
+/*
+ * @Author: Zz
+ * @Date: 2017-04-15 16:06:54
+ * @Last Modified by: Zz
+ * @Last Modified time: 2017-04-15 16:08:03
+ */
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Table, Menu, Checkbox, Dropdown, BackTop, Button, Icon, } from 'antd';
 import ZSearchInput from './ZSearchInput';
 
@@ -6,11 +13,11 @@ import '../style/style.less';
 
 export default class ZTable extends React.Component {
   static propsType = {
-    disableLeftTitle: React.PropTypes.bool,
-    disableColumnMenu: React.PropTypes.bool,
-    disableSearchInput: React.PropTypes.bool,
-    searchInputPlaceholder: React.PropTypes.string,
-    onSearch: React.PropTypes.func,
+    disableLeftTitle: PropTypes.bool,
+    disableColumnMenu: PropTypes.bool,
+    disableSearchInput: PropTypes.bool,
+    searchInputPlaceholder: PropTypes.string,
+    onSearch: PropTypes.func,
   }
   constructor(props) {
     super(props);

@@ -1,3 +1,9 @@
+/*
+ * @Author: Zz
+ * @Date: 2017-04-15 16:01:48
+ * @Last Modified by:   Zz
+ * @Last Modified time: 2017-04-15 16:01:48
+ */
 import React from 'react';
 import './style.less';
 

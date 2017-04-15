@@ -8,11 +8,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Col, Row, Icon } from 'antd';
+import PropTypes from 'prop-types';
 
 export default class ZOverview extends React.Component {
   static propTypes ={
-    data: React.PropTypes.array,
-    title: React.PropTypes.string,
+    data: PropTypes.array,
+    title: PropTypes.string,
   }
   constructor(props) {
     super(props);
