@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-04-11 20:38:24
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-15 16:27:44
+ * @Last Modified time: 2017-04-15 16:48:47
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -15,7 +15,11 @@ import ZNavigation from './ZNavigation';
 
 export default class ZApp extends React.Component {
   static propTypes = {
-    routes: PropTypes.array.isRequired,
+    routes: PropTypes.arrayOf(PropTypes.shape({
+      path: PropTypes.string.isRequired,
+      sidebar: PropTypes.func.isRequired,
+      main: PropTypes.func.isRequired,
+    })).isRequired,
   }
   constructor(props) {
     super(props);

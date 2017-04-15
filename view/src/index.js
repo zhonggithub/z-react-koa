@@ -45,7 +45,8 @@ const routes = [
   { path: '/shoelaces',
     sidebar: () => <div>Shoelaces</div>,
     main: () => <h2>Shoelaces</h2>
-  }
+  },
+  
 ];
 
 
