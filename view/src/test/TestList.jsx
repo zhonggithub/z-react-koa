@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-02-28 10:54:03
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-13 23:51:27
+ * @Last Modified time: 2017-04-15 10:23:01
  */
 import React from 'react';
 import moment from 'moment';
@@ -121,7 +121,7 @@ export default class PageAccountList extends React.Component {
       },{
         content: '用户列表',
       },{
-        icon: <ZIcon iconfont='&#xe629;' className={{ marginRight: '4px'}}/>,
+        icon: <ZIcon iconfont='&#xe629;' style={{ marginRight: '4px'}}/>,
         content: 'sfsf',
       }
     ];
