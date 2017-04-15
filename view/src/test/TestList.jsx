@@ -2,13 +2,13 @@
  * @Author: Zz
  * @Date: 2017-02-28 10:54:03
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-15 18:05:48
+ * @Last Modified time: 2017-04-15 18:44:16
  */
 import React from 'react';
 import moment from 'moment';
 import { inject, observer } from 'mobx-react';
 import { Alert, message, } from 'antd';
-import { ZTable, ZContentHeader, ZBreadcrumb, ZIcon,  } from '../components';
+import { ZTable, ZContentHeader, ZBreadcrumb, ZIcon, ZFUpload, ZFileUpload  } from '../components';
 import { accountStore } from '../stores';
 import { ZBtn, ZExportExcelBtn, ZDelBtn, ZDefBtn, }  from '../components/ZBtn'
 
@@ -131,6 +131,8 @@ export default class PageAccountList extends React.Component {
         <ZBreadcrumb items={breadcrumbItems} separator="*"/>
         <div className="hms-content-style">
           <ZContentHeader content="用户列表" />
+            <ZFUpload.ZImgUpload/>
+            <ZFileUpload.ZUpload/>
             <ZIcon iconfont='&#xe629;' onClick={this.iconClick}/>
             <ZBtn type="create" disabled href="/zplatorm/sidenav/accountservice/accountedit" />
             <ZBtn type="create" href="/zplatorm/sidenav/accountservice/accountedit" />
@@ -145,6 +147,7 @@ export default class PageAccountList extends React.Component {
             <ZBtn type="status" status={false}/>
             <ZDelBtn/>
             <ZDefBtn icon='apple'/>
+          
             <ZTable
               bordered
               //disableLeftTitle
