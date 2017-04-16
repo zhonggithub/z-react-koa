@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-02-28 10:54:03
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-15 20:47:13
+ * @Last Modified time: 2017-04-16 17:23:04
  */
 import React from 'react';
 import moment from 'moment';
@@ -10,7 +10,7 @@ import { inject, observer } from 'mobx-react';
 import { Alert, message, } from 'antd';
 import { ZTable, ZContentHeader, ZBreadcrumb, ZIcon, ZFUpload, ZFileUpload  } from '../components';
 import { accountStore } from '../stores';
-import { ZBtn, ZExportExcelBtn, ZDelBtn, ZDefBtn, }  from '../components/ZButtion';
+import { ZBtn, ZExportExcelBtn, ZDelBtn, ZDefBtn, }  from '../components/ZButton';
 
 import '../style/style';
 
