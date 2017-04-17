@@ -30,7 +30,7 @@ class ZBtn extends React.Component {
   }
 
   render() {
-    let padding = "5px 7px 5px 5px";
+    let padding = "5px 14px 5px 5px";
     if(this.props.size === "large")
       padding = "8px 15px 8px 8px";
     let tmp = { padding };
@@ -164,7 +164,7 @@ class ZDelBtn extends React.Component {
   }
 
   render(){
-    let padding = "5px 7px 5px 5px";
+    let padding = "5px 14px 5px 5px";
     if(this.props.size === "large")
       padding = "8px 15px 8px 8px";
     let tmp = { padding };
@@ -316,7 +316,7 @@ class ZExportExcelBtn extends React.Component {
   }
 
   render(){
-    let padding = "5px 7px 5px 5px";
+    let padding = "5px 14px 5px 5px";
     if(this.props.size === "large")
       padding = "8px 15px 8px 8px";
     let tmp = { padding };
