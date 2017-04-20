@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-04-11 20:38:24
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-15 16:48:47
+ * @Last Modified time: 2017-04-20 21:19:55
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -69,10 +69,11 @@ export default class ZApp extends React.Component {
           <div className="ant-layout-logo">
             {collapse ? <img style={{marginLeft: '-28px'}} src={logo}/> : <img src={logo}/>}
           </div>
-          { this.renderSideNav() } 
+          
           <div className="ant-aside-action" onClick={this.onCollapseChange}>
             <Icon type={ collapse ? 'right' : 'left'} />
           </div>
+          { this.renderSideNav() } 
         </aside>
         <div className="ant-layout-main">
           <div className="hms-layout-nav-header">
