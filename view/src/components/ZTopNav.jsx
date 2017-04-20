@@ -27,7 +27,7 @@ const g_key = [
   // '/bubblegum', //客户管理
 ]
 @inject("stores") @observer
-export default class ZNavigation extends React.Component {
+export default class ZTopNav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +38,6 @@ export default class ZNavigation extends React.Component {
       orders: [],
       orderTotal: 0,
       isNotification: true,
-      logo: 'https://avatars3.githubusercontent.com/u/17545551?v=3&s=40',
     }
   }
 
@@ -124,7 +123,6 @@ export default class ZNavigation extends React.Component {
     const _this = this;
     confirm({
       title: '是否退出?',
-      //content: 'some descriptions',
       onOk() {
         this.props.stores.appStore.logout();
       },
@@ -161,18 +159,14 @@ export default class ZNavigation extends React.Component {
               {this.renderOrderNotification()}
             </Menu.Item>
 
-            <SubMenu className="ant-layout-menu-item-3" title={<span style={{'color': '#57c5f7'}} >{ loginToolTitle } <Icon type="down" /></span>}>
+            <SubMenu className="ant-layout-menu-item-1" title={<span style={{'color': '#57c5f7'}} >{ loginToolTitle } <Icon type="down" /></span>}>
               <Menu.Item>
                 <a href='javascript:;' onClick={this.showConfirm}><Icon type="logout" />退出</a>
-                {/*<Link to='/group/login' onClick={this.logout}><Icon type="logout" />退出</Link>*/}
               </Menu.Item>
               <Menu.Item>
                 <Link to='/group/info/coupon'><Icon type="setting"  />账号设置</Link>
               </Menu.Item>
             </SubMenu>
-            <Menu.Item key="000" className="ant-layout-menu-item-2" style={{height: '54px'}}>
-              <img className='user-logo-tool' src={this.state.logo}/>
-            </Menu.Item>
           </Menu>
         </div>
 
