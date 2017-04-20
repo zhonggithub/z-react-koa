@@ -126,7 +126,7 @@ export default class ZNavigation extends React.Component {
       title: '是否退出?',
       //content: 'some descriptions',
       onOk() {
-        this.props.stores.appStore.logout();
+        _this.props.stores.appStore.logout();
       },
       onCancel() {},
     });
