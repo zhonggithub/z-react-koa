@@ -49,20 +49,6 @@ const routes = [
   
 ];
 
-
-const items = [
-      {
-        content: '主页',
-        to: '/group/dockingplatform',
-        icon: 'home',
-      },{
-        content: '账号服务',
-        to: '/group/dockingplatform/crs',
-      },{
-        content: '用户列表',
-      }
-    ];
-
 ReactDOM.render((
   <Provider stores={stores}>
     <BrowserRouter>
