@@ -38,6 +38,7 @@
   "dependencies": {
     "antd": "^2.6.0",
     "cross-env": "^4.0.0",
+    "enquire": "0.0.2",
     "html-webpack-plugin": "^2.26.0",
     "isomorphic-fetch": "^2.2.1",
     "mathquill": "^0.10.1",
@@ -45,6 +46,10 @@
     "mobx-react": "^4.1.7",
     "node-fetch": "^1.6.3",
     "prop-types": "^15.5.7",
+    "rc-banner-anim": "^0.5.12",
+    "rc-queue-anim": "^1.0.1",
+    "rc-scroll-anim": "^1.0.3",
+    "rc-tween-one": "^1.2.5",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-highcharts": "^11.5.0",

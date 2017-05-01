@@ -11,7 +11,8 @@ import { Provider } from 'mobx-react';
 import { BrowserRouter, Route, Redirect, Switch, } from 'react-router-dom';
 import { PageLogin, PageLoginIndex } from './login';
 import { ZLayout, ZNavigation, ZApp, ZBreadcrumb } from './components';
-import { TestSider, TestSider1, TestList, } from './test'
+import { TestSider, TestSider1, TestList, } from './test';
+import Home from './home';
 import stores from './stores';
 import 'antd/dist/antd.less';
 import './style/iconfont.css';
@@ -39,10 +40,12 @@ const routes = [
       </div>)}
   },
   { path: '/bubblegum',
+    exact: true,
     sidebar: () => <TestSider1/>,
     main: () => <TestList/>
   },
   { path: '/shoelaces',
+    exact: true,
     sidebar: () => <div>Shoelaces</div>,
     main: () => <h2>Shoelaces</h2>
   },
@@ -53,10 +56,26 @@ ReactDOM.render((
   <Provider stores={stores}>
     <BrowserRouter>
       <div>
-        <Route path="/" render={ () => {
+        {/*
+          <Route path="/" render={ () => {
           return auth() ? <ZApp routes={routes}/> : <PageLogin/>
         }}>
         </Route>
+      */}
+        <switch>
+          <Route path="/" exact render={ () => {
+            return <Home/>
+          }}/>
+          <Route path="/login" render={() => {
+            return <PageLogin/>
+          }}/>
+          <Route path="/:page" render={ () => {
+            return auth() ? <ZApp routes={routes}/> : <Redirect to="/login"/>
+          }}/>
+          
+            
+        
+        </switch>
      </div>
     </BrowserRouter>
   </Provider>
