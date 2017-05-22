@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-04-15 16:06:54
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-15 16:08:03
+ * @Last Modified time: 2017-05-22 14:36:36
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -89,7 +89,7 @@ export default class ZTable extends React.Component {
     }
     return <div className="hms-table-column-col-select-span-1">
             { this.props.disableSearchInput ? null : <ZSearchInput placeholder={ this.props.searchInputPlaceholder ||''}
-              onSearch={this.props.onSearch} style={{ width: 200, marginTop: this.props.disableColumnMenu ? '0px' : '-4px' }}
+              onSearch={this.props.onSearch} style={{ width: 200, marginTop: this.props.disableColumnMenu ? '0px' : '-1px' }}
             />}
             { this.props.disableColumnMenu ? null: <Dropdown
               onVisibleChange={this.handleVisibleChange}

@@ -72,9 +72,6 @@ ReactDOM.render((
           <Route path="/:page" render={ () => {
             return auth() ? <ZApp routes={routes}/> : <Redirect to="/login"/>
           }}/>
-          
-            
-        
         </switch>
      </div>
     </BrowserRouter>

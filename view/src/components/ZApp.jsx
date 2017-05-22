@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-04-11 20:38:24
  * @Last Modified by: Zz
- * @Last Modified time: 2017-04-20 21:19:55
+ * @Last Modified time: 2017-05-22 14:35:45
  */
 import React from 'react';
 import PropTypes from 'prop-types';
@@ -80,8 +80,8 @@ export default class ZApp extends React.Component {
             <ZNavigation />
           </div>
           { this.renderMain() }
+          <ZFooter/>
         </div>
-        {/*<Footer/>*/}
       </div>
     );
   }
