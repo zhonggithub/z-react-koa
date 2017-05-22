@@ -40,7 +40,7 @@ class Login extends React.Component {
    });
   }
   handleTabChange = (key) => {
-    this.state.key = '2';
+    this.state.key = key;
   }
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -61,7 +61,7 @@ class Login extends React.Component {
                         { required: true, min: 1, message: '请填写账号／手机号／邮箱！' },
                       ],
                     })(
-                      <Input prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="账号／手机号／邮箱" />
+                      <Input size="large" prefix={<Icon type="user" style={{ fontSize: 13 }} />} placeholder="账号／手机号／邮箱" />
                     )
                   }
                 </FormItem>
@@ -73,7 +73,7 @@ class Login extends React.Component {
                         { required: true, whitespace: true, message: '请填写密码！' }
                       ],
                     })(
-                      <Input prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" autoComplete="off" placeholder="请输入密码"
+                      <Input size="large" prefix={<Icon type="lock" style={{ fontSize: 13 }} />} type="password" autoComplete="off" placeholder="请输入密码"
                         onContextMenu={noop} onPaste={noop} onCopy={noop} onCut={noop}
                         />
                     )}
@@ -82,9 +82,10 @@ class Login extends React.Component {
                 <FormItem
                   wrapperCol={{ offset: 11 }}
                   >
-                    <label>
-                      <Checkbox defaultChecked={false} {...getFieldDecorator('remember', {valuePropName: 'unchecked'})} >记住密码</Checkbox>
-                    </label>
+                  {
+                    getFieldDecorator('remember', { valuePropName: 'checked', initialValue: false })(<Checkbox >记住密码</Checkbox>)
+                  }
+                      
                   {/*&nbsp;&nbsp;&nbsp;
                     <Button type="ghost" onClick={this.handleReset}>重置</Button>*/}
                     &nbsp;&nbsp;&nbsp;
