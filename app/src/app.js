@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-01-02 16:22:01
  * @Last Modified by: Zz
- * @Last Modified time: 2017-05-23 10:50:06
+ * @Last Modified time: 2017-05-23 11:30:37
  */
 import Koa from 'koa';
 import koaConvert from 'koa-convert';
@@ -30,7 +30,7 @@ const successHandler = async (ctx, next) => {
   if (ctx.type !== 'text/html') {
     ctx.response.set('X-Server-Request-Id', ctx.reqId);
     if (!ctx.status || (ctx.status >= 200 && ctx.status < 400)) {
-      await writeLog(ctx, null);
+      // await writeLog(ctx, null);
       if (ctx.formatBody !== false) {
         ctx.body = {
           code: 0,
