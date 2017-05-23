@@ -57,6 +57,7 @@ server/dist/
 .remote-sync.json
 /doc/site/
 /view/dist/
+/app/dist/
 /server/public/
 .vscode/
 .idea/

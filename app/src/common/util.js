@@ -6,6 +6,7 @@
 * @Last modified time: 2016-10-07T10:04:08+08:00
 */
 import crypto from 'crypto';
+import rawBody from 'raw-body';
 
 export default {
   verify(data, mandatory) {
@@ -113,5 +114,14 @@ export default {
       }
     }
     return Promise.resolve(rows);
+  },
+  async getBody(ctx, next) {
+    try {
+      const body = await rawBody(ctx.req);
+      ctx.request.body = JSON.parse(body);
+    } catch (err) {
+      ctx.throw(err, 400);
+    }
+    await next();
   },
 };
