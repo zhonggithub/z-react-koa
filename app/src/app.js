@@ -1,14 +1,16 @@
 /*
- * @Author: Zz 
- * @Date: 2017-01-02 16:22:01 
+ * @Author: Zz
+ * @Date: 2017-01-02 16:22:01
  * @Last Modified by: Zz
- * @Last Modified time: 2017-01-04 20:47:11
+ * @Last Modified time: 2017-05-23 10:25:09
  */
 import Koa from 'koa';
 import koaConvert from 'koa-convert';
 import koaBunyanLogger from 'koa-bunyan-logger';
 import koaStaticCache from 'koa-static-cache';
 import cors from 'koa2-cors';
+import session from 'koa-session2';
+import { RedisStore } from './common';
 import './env';
 import routes from './routes';
 
@@ -23,6 +25,7 @@ const handleError = async (ctx, next) => {
   }
 };
 
+app.use(session({ store: new RedisStore() }));
 app.use(cors())
   .use(koaConvert(koaStaticCache(`${__dirname}/public/`, {
     prefix: process.env.APP_PREFIX,

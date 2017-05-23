@@ -40,7 +40,6 @@ export default {
     dec += decipher.final('utf8');
     return dec;
   },
-  
   packageRet200(ctx, retData, convertDataFunc) {
     ctx.status = 200;
     ctx.body = convertDataFunc ? convertDataFunc(retData) : retData;
@@ -51,11 +50,11 @@ export default {
     ctx.body = convertDataFunc ? convertDataFunc(retData.data) : retData.data;
   },
 
-  returnPage(page, defaultPage) {
-    return page ? Number(page) : defaultPage || 1;
+  returnPage(page, defaultPage = 1) {
+    return page ? Number(page) : defaultPage;
   },
-  returnPageSize(pageSize, defaultPageSize) {
-    return pageSize ? Number(pageSize) : defaultPageSize || 10;
+  returnPageSize(pageSize, defaultPageSize = 10) {
+    return pageSize ? Number(pageSize) : defaultPageSize;
   },
 
   async exportExcelFile(ctx, exportFun, step) {
