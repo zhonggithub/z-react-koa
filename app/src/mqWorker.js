@@ -2,11 +2,11 @@
  * @Author: Zz
  * @Date: 2017-05-23 11:23:17
  * @Last Modified by: Zz
- * @Last Modified time: 2017-05-23 11:26:17
+ * @Last Modified time: 2017-05-23 17:24:16
  */
 import _ from 'lodash';
 import RSMQWorker from 'rsmq-worker';
-import { config as Config, logger as Logger } from './common';
+import { config as Config, logger as Logger, worker as workerImp } from './common';
 
 // 实例化对象
 const logger = Logger('queue');
@@ -18,8 +18,20 @@ const options = _.defaults(Config.queue, {
 });
 
 const worker = new RSMQWorker(Config.queue.qname, options);
-worker.on('message', (msg, next) => {
+worker.on('message', async (msg, next) => {
   msg = JSON.parse(msg);
+  let isWorker = false;
+  for (const func of workerImp) {
+    const bo = await func(msg);
+    if (bo) {
+      isWorker = true;
+      next();
+      break;
+    }
+  }
+  if (isWorker) {
+    return;
+  }
   next();
   // request.post({ url: msg.path, body: msg.data, json: true, timeout: 10 * 1000 }, (err, response, body) => {
   //   if (err || body.code !== 0) {
