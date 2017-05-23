@@ -2,7 +2,7 @@
  * @Author: Zz
  * @Date: 2017-01-02 16:22:01
  * @Last Modified by: Zz
- * @Last Modified time: 2017-05-23 10:25:09
+ * @Last Modified time: 2017-05-23 10:50:06
  */
 import Koa from 'koa';
 import koaConvert from 'koa-convert';
@@ -25,12 +25,30 @@ const handleError = async (ctx, next) => {
   }
 };
 
+const successHandler = async (ctx, next) => {
+  await next();
+  if (ctx.type !== 'text/html') {
+    ctx.response.set('X-Server-Request-Id', ctx.reqId);
+    if (!ctx.status || (ctx.status >= 200 && ctx.status < 400)) {
+      await writeLog(ctx, null);
+      if (ctx.formatBody !== false) {
+        ctx.body = {
+          code: 0,
+          message: 'success',
+          data: ctx.body,
+        };
+      }
+    }
+  }
+};
+
 app.use(session({ store: new RedisStore() }));
 app.use(cors())
   .use(koaConvert(koaStaticCache(`${__dirname}/public/`, {
     prefix: process.env.APP_PREFIX,
     maxAge: 100000000000,
   })))
+  .use(successHandler)
   .use(handleError)
   .use(koaConvert(koaBunyanLogger({
     name: process.env.APP_NAME,
