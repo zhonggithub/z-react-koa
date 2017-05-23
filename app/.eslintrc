@@ -4,7 +4,7 @@
  * @Description:  
  * @Date: 2017-01-02 16:55:20 
  * @Last Modified by: Zz
- * @Last Modified time: 2017-05-23 17:22:33
+ * @Last Modified time: 2017-05-23 17:36:34
  */
 {
   "parser": "babel-eslint",
@@ -14,7 +14,7 @@
     "max-len": [1, 400],
     "no-await-in-loop": 0,
     "global-require": 0,
-    "no-restricted-syntax": ["error", "FunctionExpression", "WithStatement"],
+    "no-restricted-syntax": 0,
     "import/no-dynamic-require": 0
   }
 }
