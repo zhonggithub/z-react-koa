@@ -39,6 +39,7 @@ export default class ZDatePicker extends React.Component {
         placeholder={ this.props.placeholder || ['起始时间', '截止时间'] }
         format={ this.props.format || "YYYY-MM-DD HH:mm" }
         onChange={ this.props.onChange }
+        {...this.props}
       />)
   }
 }

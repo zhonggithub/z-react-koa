@@ -83,7 +83,7 @@ export default class ZStatistics extends React.Component {
 					<span style={{fontSize: '16px', margin: '8px 0 -17px 10px'}}><Icon type="area-chart" style={{marginLeft: "10px", marginRight: '5px'}}/>{this.props.title}</span>
 					<div className="hms-statistics-title-right">
 						{ this.props.lineSelect === false ? null : this.renderSelect() }
-						{ this.props.datePicker === false ? null : <ZDatePicker onChange={this.props.onChange}/>}
+						{ this.props.datePicker === false ? null : <ZDatePicker size='large' onChange={this.props.onChange}/>}
 					</div>
 				</div>
 				<div className="hms-statistics-title-header"></div>
